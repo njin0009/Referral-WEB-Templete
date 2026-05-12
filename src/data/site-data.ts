@@ -50,7 +50,7 @@ export const profile: Profile = {
   summary:
     "A compact portfolio prototype for Nora's BUPA applications: product strategy, international delivery, engineering QA, and stakeholder communication in one maintainable site.",
   email: "nuojin01@gmail.com",
-  visa: "6月毕业后下 485 工作签证",
+  visa: "Eligible to apply for the 485 post-study work visa after graduating in June.",
   highlights: [
     "Product strategy and market-entry work for Australian context",
     "Full-stack delivery across AWS Lambda, Firebase, REST APIs and React",
@@ -72,10 +72,10 @@ export const technicalTimeline: CapabilityItem[] = [
     period: "Apr 2026 - Present",
     image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80",
     summary:
-      "生产级 Next.js / React 个人产品项目，覆盖用户路径、前端体验、部署迭代和产品定位，是 Nora code + product ownership 的核心作品。",
+      "A production-oriented Next.js / React product project covering user journeys, frontend experience, deployment iteration, and product positioning. It is Nora's strongest code plus product ownership case study.",
     points: ["Next.js", "React", "Product ownership", "Live site"],
     link: "https://iteration3.pathwayiq.me/",
-    status: "开发中",
+    status: "In development",
   },
   {
     id: "glowcheck",
@@ -84,10 +84,10 @@ export const technicalTimeline: CapabilityItem[] = [
     period: "2026",
     image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
     summary:
-      "Serverless UV 防晒建议平台，使用 AWS Lambda + S3 + Athena + Node.js 构建数据分析管道，响应时间低于 200ms。访问密码：1111。",
+      "A serverless UV-aware sun safety platform using AWS Lambda, S3, Athena, and Node.js to build a data analytics pipeline with sub-200ms responses. Access password: 1111.",
     points: ["AWS Lambda", "S3", "Athena", "Node.js"],
     link: "https://uvaware.me/",
-    status: "密码 1111",
+    status: "Password 1111",
   },
   {
     id: "studycouch",
@@ -96,10 +96,10 @@ export const technicalTimeline: CapabilityItem[] = [
     period: "2026",
     image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80",
     summary:
-      "学习与协作场景的全栈项目，体现 Nora 对用户流程、信息架构和前后端功能拆解的实现能力。",
+      "A full-stack learning and collaboration product that demonstrates Nora's ability to structure user flows, information architecture, and frontend/backend feature delivery.",
     points: ["Full-stack", "UX flow", "Data model", "Collaboration"],
     link: "https://rubystudycouch.pages.dev/",
-    status: "开发中",
+    status: "In development",
   },
   {
     id: "cloud-pose",
@@ -108,7 +108,7 @@ export const technicalTimeline: CapabilityItem[] = [
     period: "2025",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
     summary:
-      "云端姿态识别项目，展示 Docker / Kubernetes / 云部署能力，可支撑 Full Stack Software Engineer 岗位叙事。",
+      "A cloud-based pose recognition project showing Docker, Kubernetes, and cloud deployment capability, supporting Nora's narrative for full-stack software engineering roles.",
     points: ["Docker", "Kubernetes", "Cloud deployment", "Computer vision"],
     link: "https://github.com/njin0009",
   },
@@ -118,16 +118,16 @@ export const managementTimeline: CapabilityItem[] = [
   {
     id: "helloride",
     title: "Product Marketing Manager Intern - HelloRide",
-    category: "澳洲本地经验 · Product Marketing",
+    category: "Australian local experience · Product Marketing",
     period: "Nov 2025 - Dec 2025",
     location: "Melbourne / Hybrid",
     coordinates: [-37.8136, 144.9631],
     workType: "internship",
     image: "/assets/experience/nexstar-certificates.png",
     summary:
-      "HelloRide internship, Hybrid。围绕澳洲本地市场做 market / stakeholder analysis、用户细分、价值主张、产品定位和成功指标，并获得 City of Melbourne NexStar Excellence Award。",
+      "HelloRide internship, hybrid. Nora worked on market and stakeholder analysis for the Australian local context, user segmentation, value propositions, product positioning, and success metrics, earning the City of Melbourne NexStar Excellence Award.",
     points: ["Market analysis", "Stakeholder alignment", "Product positioning", "NexStar Award"],
-    group: "澳洲本地经验",
+    group: "Australian local experience",
     detailTitle: "NexStar Excellence Award Recipient | City of Melbourne",
     details: [
       "Nov 2025 - Dec 2025 · 2 mos · Hybrid",
@@ -141,16 +141,16 @@ export const managementTimeline: CapabilityItem[] = [
   {
     id: "futurelab",
     title: "Product & Technology Intern - FutureLab",
-    category: "澳洲 / 马来西亚 / 英国 · Remote",
+    category: "Australia / Malaysia / United Kingdom · Remote",
     period: "Jun 2025 - Jul 2025",
     location: "Melbourne, Australia / Remote",
     coordinates: [-37.8136, 144.9631],
     workType: "internship",
     image: "/assets/experience/teamwork-certificate.png",
     summary:
-      "FutureLab.my internship, Monash x Warwick TeaMWork Virtual Internship。跨澳洲、马来西亚和英国团队，参与 full-stack solution 设计交付、产品构思、功能优先级和 stakeholder communication。",
+      "FutureLab.my internship through the Monash x Warwick TeaMWork Virtual Internship. Nora collaborated across Australia, Malaysia, and the United Kingdom on full-stack solution design, product ideation, feature prioritisation, and stakeholder communication.",
     points: ["International teamwork", "Product ideation", "Rapid prototyping", "Agile delivery"],
-    group: "澳洲 / 马来西亚 / 英国远程协作",
+    group: "Australia / Malaysia / United Kingdom remote collaboration",
     detailTitle: "TeaMWork Virtual Internship Certificate - FutureLab",
     details: [
       "Jun 2025 - Jul 2025 · 2 mos · Melbourne, Victoria, Australia · Remote",
@@ -164,16 +164,16 @@ export const managementTimeline: CapabilityItem[] = [
   {
     id: "ecarx",
     title: "Product Manager - ECARX",
-    category: "中国-瑞典经验 · Volvo / Polestar",
+    category: "China-Sweden experience · Volvo / Polestar",
     period: "Jun 2023 - Jun 2024",
     location: "China / On-site",
     coordinates: [30.5928, 114.3055],
     workType: "full-time",
     image: "/assets/experience/ecarx-certificate.png",
     summary:
-      "ECARX full-time Product Manager。参与 Volvo / Polestar 车载信息娱乐系统端到端交付，管理系统集成、release readiness 和跨境 stakeholder coordination。",
+      "Full-time Product Manager at ECARX. Nora contributed to end-to-end delivery of Volvo / Polestar automotive infotainment systems, managing system integration, release readiness, and cross-border stakeholder coordination.",
     points: ["Technical PM", "Release readiness", "Stakeholder management", "Python automation"],
-    group: "中国-瑞典车载项目经验",
+    group: "China-Sweden automotive delivery experience",
     detailTitle: "Senior Product Development Engineer | System Integration & Delivery | ECARX",
     details: [
       "Jun 2023 - Jun 2024 · 1 yr 1 mo · China · On-site",
@@ -187,16 +187,16 @@ export const managementTimeline: CapabilityItem[] = [
   {
     id: "isoftstone",
     title: "Software Testing Engineer - Volvo V216",
-    category: "中国-瑞典经验 · System Integration QA",
+    category: "China-Sweden experience · System Integration QA",
     period: "May 2022 - May 2023",
     location: "China / On-site",
     coordinates: [30.5928, 114.3055],
     workType: "full-time",
     image: "/assets/experience/isoftstone-certificate.png",
     summary:
-      "iSoftStone full-time Software Engineer in Test。为 Volvo / Polestar automotive infotainment platform 做系统级与集成测试、CAN/LIN 验证和 Python 自动化回归。",
+      "Full-time Software Engineer in Test at iSoftStone. Nora supported Volvo / Polestar automotive infotainment platforms through system-level and integration testing, CAN/LIN validation, and Python automation regression work.",
     points: ["System testing", "CAN/LIN", "CANoe", "Python automation"],
-    group: "中国-瑞典车载项目经验",
+    group: "China-Sweden automotive delivery experience",
     detailTitle: "Certificate of Termination of Employment | iSoftStone",
     details: [
       "May 2022 - May 2023 · 1 yr 1 mo · China · On-site",
@@ -210,16 +210,16 @@ export const managementTimeline: CapabilityItem[] = [
   {
     id: "dongfeng",
     title: "Accounting Assistant Intern - Dongfeng Motor",
-    category: "中国本地经验 · Finance",
+    category: "China local experience · Finance",
     period: "Aug 2021 - Oct 2021",
     location: "China / On-site",
     coordinates: [30.5928, 114.3055],
     workType: "internship",
     image: "/assets/experience/dongfeng-internship-certificate.png",
     summary:
-      "Dongfeng Motor Corporation Passenger Vehicle Company internship。支持财务部日常运营、账务核对、对账和 100+ 财务文档归档，作为早期职业纪律和准确性证明。",
+      "Dongfeng Motor Corporation Passenger Vehicle Company internship. Nora supported finance department operations, account verification, reconciliation, and archiving of 100+ financial documents, demonstrating early-career discipline and accuracy.",
     points: ["Finance accuracy", "Reconciliation", "Archive", "Documentation"],
-    group: "中国本地基础经验",
+    group: "China local foundation experience",
     detailTitle: "Internship Certificate - Dongfeng Motor Corporation",
     details: [
       "Aug 2021 - Oct 2021 · 3 mos · China · On-site",
@@ -246,8 +246,8 @@ export const jobs: Job[] = [
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80",
     priority: 1,
     reason:
-      "13 个职位中匹配度最高。Byte Squad 需要 backlog 管理、Agile squad 领导、B2C+B2B2C 交付，和 Nora 的 ECARX PM 经历及 PathwayIQ 很贴。",
-    strengths: ["PM 经历直接命中", "Backlog ownership", "Agile squad", "PMP + AWS AI"],
+      "The strongest match across the role set. Byte Squad needs backlog management, Agile squad leadership, and B2C/B2B2C delivery, which aligns with Nora's ECARX product management experience and PathwayIQ product ownership.",
+    strengths: ["Direct PM experience", "Backlog ownership", "Agile squad", "PMP + AWS AI"],
   },
   {
     id: "j2",
@@ -262,7 +262,7 @@ export const jobs: Job[] = [
     image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80",
     priority: 2,
     reason:
-      "应用生命周期管理、供应商协调、Azure API 都在 Nora 的 Technical PM 优势区。Volvo/Polestar 与中国工程团队协作经验可迁移。",
+      "Application lifecycle management, vendor coordination, and Azure API work sit inside Nora's technical product management strengths. Her Volvo/Polestar and China engineering collaboration experience is transferable.",
     strengths: ["App lifecycle", "Vendor coordination", "Go/No-Go gating", "Technical PM"],
   },
   {
@@ -278,7 +278,7 @@ export const jobs: Job[] = [
     image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80",
     priority: 3,
     reason:
-      "Next.js、React、Docker/K8s 经验可以直接展示。缺口是 .NET Core，但 AWS Lambda 到 Azure Functions 的架构理解可桥接。",
+      "Nora can directly demonstrate Next.js, React, Docker, and Kubernetes experience. The main gap is .NET Core, but her AWS Lambda experience gives her a strong architectural bridge to Azure Functions.",
     strengths: ["Next.js", "React", "Docker/K8s", "AWS Lambda"],
   },
   {
@@ -293,7 +293,7 @@ export const jobs: Job[] = [
     url: "https://careers.bupa.com.au/job/melbourne/senior-customer-and-product-insights-analyst/40796/38180991168",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
     reason:
-      "与 Digital Product Manager 同属 Blua 方向。需要高级 SQL、Power BI、Adobe Analytics 和 5+ 年分析经验，可作为主投岗位的补充申请。",
+      "This sits close to the Digital Product Manager direction within Blua. It requires advanced SQL, Power BI, Adobe Analytics, and 5+ years of analytics experience, so it works best as a supporting application rather than the primary target.",
     strengths: ["Python", "Athena pipeline", "Product insight", "Supplement role"],
   },
   {
@@ -308,7 +308,7 @@ export const jobs: Job[] = [
     url: "https://careers.bupa.com.au/job/melbourne/digital-data-specialist/40796/37487295232",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
     reason:
-      "如果 JD 偏 Adobe Analytics/Tealium 就谨慎；如果偏数据管道/工程，Athena + S3 pipeline 和政府数据集集成是强证据。",
+      "If the role leans heavily toward Adobe Analytics or Tealium, it should be approached carefully. If the focus is data pipelines or engineering, Nora's Athena, S3, and public dataset integration work becomes strong evidence.",
     strengths: ["Athena", "S3 pipeline", "Data integration", "Check JD first"],
   },
   {
@@ -324,7 +324,7 @@ export const jobs: Job[] = [
     image: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80",
     priority: 4,
     reason:
-      "Bupa 门店面对面健康险销售与留存岗，仅作备选。普通话流利在 Box Hill 的中澳社区会是真实优势。",
-    strengths: ["Backup option", "Mandarin", "Customer value", "Box Hill"],
+      "This is a face-to-face retail health insurance sales and retention role, best kept as a backup option. Nora's fluent Mandarin would be a real advantage in the Box Hill Chinese-Australian community.",
+    strengths: ["Backup option", "Mandarin fluency", "Customer value", "Box Hill"],
   },
 ];

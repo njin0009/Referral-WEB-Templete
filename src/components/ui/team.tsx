@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
+import JSZip from "jszip";
 import {
-  BadgeCheck,
   ChevronLeft,
   ChevronRight,
   Download,
@@ -15,6 +15,7 @@ import type { Job, Profile } from "@/data/site-data";
 import type { Language } from "@/App";
 
 const noraAvatar = "/assets/nora-portrait.png";
+const bupaLogo = "/assets/bupa-logo.svg";
 
 type ReferralRolesProps = {
   jobs: Job[];
@@ -24,18 +25,32 @@ type ReferralRolesProps = {
 
 const copy = {
   zh: {
-    title: "Nora 希望被内推的职位",
-    subtitle: "可以点击图片获取对应职位信息",
-    leftCards: "向左调整职位卡片",
-    rightCards: "向右调整职位卡片",
+    allZip: "一键下载压缩包",
     closeDate: "截止",
-    previousDetail: "切换到上一个职位详情",
-    nextDetail: "切换到下一个职位详情",
-    keyPoints: "Nora 适合他的 key points",
-    priorityLabel: "最想投递的职位：",
-    visaLabel: "Visa",
+    coverLetter: "下载求职信",
+    coverLetterTitle: "Nora Jin 求职信",
+    fit: "匹配",
+    job: "职位编号",
+    keyPoints: "Nora 适合这个职位的关键点",
+    leftCards: "向左移动职位卡片",
+    nextDetail: "查看下一个职位详情",
+    pdf: "下载简历",
+    previousDetail: "查看上一个职位详情",
+    priorityLabel: "优先投递职位：",
+    resumeTitle: "Nora Jin 简历",
+    rightCards: "向右移动职位卡片",
+    role: "职位",
+    subtitle: "点击卡片查看对应职位匹配信息。",
+    title: "Nora 希望获得内推的职位",
+    url: "链接",
+    visaLabel: "签证",
   },
   en: {
+    allZip: "Download All as ZIP",
+    coverLetter: "Download Cover Letter",
+    coverLetterTitle: "Nora Jin Cover Letter",
+    fit: "fit",
+    job: "Job",
     title: "Roles Nora Hopes to Be Referred For",
     subtitle: "Click a card to view the matching role details.",
     leftCards: "Move role cards left",
@@ -43,11 +58,75 @@ const copy = {
     closeDate: "Closes",
     previousDetail: "Show previous role detail",
     nextDetail: "Show next role detail",
+    pdf: "Download Resume",
     keyPoints: "Why Nora fits this role",
     priorityLabel: "Top target roles:",
+    resumeTitle: "Nora Jin Resume",
+    role: "Role",
+    url: "URL",
     visaLabel: "Visa",
   },
 } satisfies Record<Language, Record<string, string>>;
+
+const jobZh: Record<string, { title: string; team: string; location: string; contract: string; reason: string; strengths: string[] }> = {
+  j1: {
+    contract: "永久全职",
+    location: "墨尔本",
+    reason: "这是所有职位中匹配度最高的一个。Byte Squad 需要待办事项管理、敏捷团队协作和面向消费者/企业消费者的交付能力，这与 Nora 在 ECARX 的产品管理经历以及 PathwayIQ 产品负责经验高度契合。",
+    strengths: ["直接产品管理经验", "待办事项管理", "敏捷团队协作", "项目管理与人工智能能力"],
+    team: "Byte Squad / Bupa 牙科",
+    title: "数字产品经理",
+  },
+  j2: {
+    contract: "永久全职",
+    location: "墨尔本",
+    reason: "应用生命周期管理、供应商协调和 Azure API 工作都属于 Nora 的技术产品管理优势。她在 Volvo/Polestar 项目和中国工程团队协作中的经验可以迁移到这个岗位。",
+    strengths: ["应用生命周期", "供应商协调", "上线决策", "技术产品管理"],
+    team: "视光与听力应用",
+    title: "技术应用负责人 - 视光与听力",
+  },
+  j3: {
+    contract: "一年固定期限",
+    location: "墨尔本",
+    reason: "Nora 可以直接展示 Next.js、React、Docker 和 Kubernetes 经验。主要差距是 .NET Core，但她的 AWS Lambda 经验可以作为理解 Azure Functions 架构的桥梁。",
+    strengths: ["前端框架", "界面开发", "容器与编排", "云函数"],
+    team: "数字工程",
+    title: "全栈软件工程师",
+  },
+  j4: {
+    contract: "永久全职",
+    location: "墨尔本",
+    reason: "这个职位与数字产品经理同属 Blua 方向。它需要高级 SQL、Power BI、Adobe Analytics 和五年以上分析经验，因此更适合作为辅助投递，而不是主投职位。",
+    strengths: ["数据分析", "数据管道", "产品洞察", "辅助投递"],
+    team: "Blua / 产品洞察",
+    title: "高级客户与产品洞察分析师",
+  },
+  j5: {
+    contract: "固定期限",
+    location: "墨尔本",
+    reason: "如果职位重点偏 Adobe Analytics 或 Tealium，需要谨慎；如果重点是数据管道或数据工程，Nora 的 Athena、S3 和公共数据集成经验就是有力证据。",
+    strengths: ["数据查询", "数据管道", "数据集成", "先核对职位描述"],
+    team: "数字数据",
+    title: "数字数据专员",
+  },
+  jcs1: {
+    contract: "永久全职",
+    location: "博士山",
+    reason: "这是面向门店的健康保险销售与客户留存岗位，更适合作为备选。Nora 流利的普通话在博士山华人社区会是真实优势。",
+    strengths: ["备选职位", "普通话流利", "客户价值", "博士山"],
+    team: "零售健康保险",
+    title: "客户价值专员 - 博士山",
+  },
+};
+
+function localJob(job: Job, language: Language) {
+  const zh = jobZh[job.id];
+  return language === "zh" && zh ? { ...job, ...zh } : job;
+}
+
+function localVisa(profile: Profile, language: Language) {
+  return language === "zh" ? "6 月毕业后可申请 485 毕业生工作签证。" : profile.visa;
+}
 
 export default function ReferralRoles({ jobs, language, profile }: ReferralRolesProps) {
   const railRef = useRef<HTMLDivElement>(null);
@@ -91,9 +170,13 @@ export default function ReferralRoles({ jobs, language, profile }: ReferralRoles
     showJobDetail(jobs[nextIndex]);
   }
 
-  function downloadRolePdf(job: Job, kind: "resume" | "cover-letter") {
-    const title = kind === "resume" ? "Nora Jin Resume" : "Nora Jin Cover Letter";
-    const filename = `nora-${job.id}-${kind}.pdf`;
+  function safeFilePart(value: string) {
+    return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  function createRolePdfBlob(job: Job, kind: "resume" | "cover-letter") {
+    const local = localJob(job, language);
+    const title = kind === "resume" ? t.resumeTitle : t.coverLetterTitle;
     const pdf = [
       "%PDF-1.4",
       "1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj",
@@ -106,13 +189,13 @@ BT
 (${title}) Tj
 /F1 11 Tf
 0 -32 Td
-(Role: ${job.title.replace(/[()]/g, "")}) Tj
+(${t.role}: ${local.title.replace(/[()]/g, "")}) Tj
 0 -20 Td
-(Job: ${job.jobNumber} | Fit: ${job.fit}% | Close: ${job.closeDate}) Tj
+(${t.job}: ${job.jobNumber} | ${job.fit}% ${t.fit} | ${t.closeDate}: ${job.closeDate}) Tj
 0 -20 Td
-(URL: ${job.url.replace(/[()]/g, "")}) Tj
+(${t.url}: ${job.url.replace(/[()]/g, "")}) Tj
 0 -28 Td
-(Key points: ${job.strengths.join(", ").replace(/[()]/g, "")}) Tj
+(${t.keyPoints}: ${local.strengths.join(", ").replace(/[()]/g, "")}) Tj
 ET
 endstream endobj`,
       "5 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj",
@@ -124,10 +207,29 @@ endstream endobj`,
       "0",
       "%%EOF",
     ].join("\n");
-    const blob = new Blob([pdf], { type: "application/pdf" });
+    return new Blob([pdf], { type: "application/pdf" });
+  }
+
+  function downloadRolePdf(job: Job, kind: "resume" | "cover-letter") {
+    const filename = `nora-${safeFilePart(job.title)}-${kind}.pdf`;
+    const blob = createRolePdfBlob(job, kind);
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = filename;
+    link.click();
+    URL.revokeObjectURL(link.href);
+  }
+
+  async function downloadRoleZip(job: Job) {
+    const zip = new JSZip();
+    const roleSlug = safeFilePart(job.title);
+    zip.file(`nora-${roleSlug}-resume.pdf`, createRolePdfBlob(job, "resume"));
+    zip.file(`nora-${roleSlug}-cover-letter.pdf`, createRolePdfBlob(job, "cover-letter"));
+
+    const blob = await zip.generateAsync({ type: "blob" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `nora-${roleSlug}-application-pack.zip`;
     link.click();
     URL.revokeObjectURL(link.href);
   }
@@ -161,8 +263,8 @@ endstream endobj`,
 
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mx-auto mb-16 flex max-w-5xl flex-col items-center px-6 text-center lg:px-0">
-          <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-900 text-white">
-            <BadgeCheck className="h-6 w-6" />
+          <div className="mb-6 flex h-16 w-28 items-center justify-center overflow-hidden rounded-xl bg-[#0086C9] shadow-sm">
+            <img alt="Bupa" className="h-full w-full object-cover" src={bupaLogo} />
           </div>
 
           <h1 className="relative mb-4 font-medium text-4xl tracking-tight text-neutral-900 sm:text-5xl">
@@ -211,11 +313,14 @@ endstream endobj`,
 
           <div className="job-carousel" ref={railRef}>
             <div className={`job-carousel-track ${isManuallyPaused ? "is-paused" : ""}`}>
-              {[...jobs, ...jobs].map((job, index) => (
+              {[...jobs, ...jobs].map((rawJob, index) => {
+                const job = localJob(rawJob, language);
+
+                return (
                 <button
                   className="group flex w-64 shrink-0 flex-col text-left no-underline"
                   key={`${job.id}-${index}`}
-                  onClick={() => showJobDetail(job)}
+                  onClick={() => showJobDetail(rawJob)}
                   type="button"
                 >
                   <div className="relative h-[23rem] w-full overflow-hidden rounded-2xl bg-neutral-100">
@@ -225,7 +330,7 @@ endstream endobj`,
                       src={job.image}
                     />
                     <div className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-neutral-900">
-                      {job.fit}% fit
+                      {job.fit}% {t.fit}
                     </div>
                     <div className="absolute bottom-0 w-full rounded-lg bg-neutral-100/90 p-3 backdrop-blur">
                       <h3 className="text-base font-semibold leading-tight text-neutral-900">{job.title}</h3>
@@ -236,7 +341,8 @@ endstream endobj`,
                     </div>
                   </div>
                 </button>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -264,12 +370,17 @@ endstream endobj`,
                 <img alt={selectedJob.title} className="h-full min-h-72 w-full object-cover" src={selectedJob.image} />
               </div>
               <div>
+                {(() => {
+                  const selected = localJob(selectedJob, language);
+
+                  return (
+                    <>
                 <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-neutral-500">
-                  {selectedJob.jobNumber} · {selectedJob.fit}% fit · {t.closeDate} {selectedJob.closeDate}
+                  {selectedJob.jobNumber} · {selectedJob.fit}% {t.fit} · {t.closeDate} {selectedJob.closeDate}
                 </p>
-                <h2 className="mb-3 text-3xl font-semibold leading-tight text-neutral-950">{selectedJob.title}</h2>
+                <h2 className="mb-3 text-3xl font-semibold leading-tight text-neutral-950">{selected.title}</h2>
                 <p className="mb-4 text-neutral-600">
-                  {selectedJob.team} · {selectedJob.location} · {selectedJob.contract}
+                  {selected.team} · {selected.location} · {selected.contract}
                 </p>
                 <a
                   className="mb-6 inline-flex max-w-full items-center gap-2 break-all text-sm font-semibold text-neutral-900 underline underline-offset-4"
@@ -280,11 +391,11 @@ endstream endobj`,
                   <ExternalLink className="h-4 w-4 shrink-0" />
                   {selectedJob.url}
                 </a>
-                <p className="mb-5 leading-relaxed text-neutral-700">{selectedJob.reason}</p>
+                <p className="mb-5 leading-relaxed text-neutral-700">{selected.reason}</p>
                 <div className="mb-6">
                   <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-500">{t.keyPoints}</p>
                   <div className="flex flex-wrap gap-2">
-                    {selectedJob.strengths.map((point) => (
+                    {selected.strengths.map((point) => (
                       <span className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-neutral-800 ring-1 ring-neutral-200" key={point}>
                         {point}
                       </span>
@@ -294,13 +405,20 @@ endstream endobj`,
                 <div className="flex flex-wrap gap-3">
                   <button className="download-action" onClick={() => downloadRolePdf(selectedJob, "resume")} type="button">
                     <Download className="h-4 w-4" />
-                    Download PDF
+                    {t.pdf}
                   </button>
                   <button className="download-action download-action-outline" onClick={() => downloadRolePdf(selectedJob, "cover-letter")} type="button">
                     <Download className="h-4 w-4" />
-                    Download Cover Letter
+                    {t.coverLetter}
+                  </button>
+                  <button className="download-action download-action-outline" onClick={() => void downloadRoleZip(selectedJob)} type="button">
+                    <Download className="h-4 w-4" />
+                    {t.allZip}
                   </button>
                 </div>
+                    </>
+                  );
+                })()}
               </div>
             </div>
           </div>
@@ -309,17 +427,21 @@ endstream endobj`,
         <div className="mx-auto mt-20 max-w-3xl px-6 text-center lg:px-0">
           <div className="priority-role-row mb-8 text-lg font-medium leading-relaxed text-neutral-900 md:text-xl">
             <span className="priority-role-label">{t.priorityLabel}</span>
-            {topJobs.map((job, index) => (
+            {topJobs.map((rawJob, index) => {
+              const job = localJob(rawJob, language);
+
+              return (
               <button
                 className="priority-role-button"
                 key={job.id}
-                onClick={() => showJobDetail(job)}
+                onClick={() => showJobDetail(rawJob)}
                 type="button"
               >
                 {index + 1}.{" "}
                 {job.title}
               </button>
-            ))}
+              );
+            })}
           </div>
 
           <div className="flex flex-col items-center gap-3">
@@ -361,7 +483,7 @@ endstream endobj`,
                 </a>
                 <p className="m-0 inline-flex items-center justify-center gap-2">
                   <BadgeInfo className="h-4 w-4" />
-                  {t.visaLabel}: {profile.visa}
+                  {t.visaLabel}: {localVisa(profile, language)}
                 </p>
               </div>
             </div>

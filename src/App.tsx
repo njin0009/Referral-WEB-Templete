@@ -20,22 +20,23 @@ function scrollToId(id: string) {
 
 const copy = {
   zh: {
-    navProfile: "Profile",
-    navBupa: "BUPA",
-    navMessage: "Message",
-    langSwitch: "EN",
-    messageKicker: "Message",
-    messageTitle: "留言给 Nora",
-    messageLead: "这里先接本地 Express API，之后可以换成数据库、Notion、Airtable 或邮件通知。",
-    nameLabel: "名字",
+    navProfile: "个人资料",
+    navBupa: "BUPA 职位",
+    navMessage: "留言",
+    langSwitch: "English",
+    messageKicker: "留言",
+    messageTitle: "给 Nora 留言",
+    messageLead: "这个表单目前会提交到本地 Express 接口，后续可以接入数据库、Notion、Airtable 或邮件通知。",
+    nameLabel: "姓名",
     emailLabel: "邮箱",
-    messageLabel: "留言",
-    namePlaceholder: "Your name",
-    messagePlaceholder: "想聊的内容...",
+    emailPlaceholder: "你的邮箱",
+    messageLabel: "留言内容",
+    namePlaceholder: "你的姓名",
+    messagePlaceholder: "想聊什么？",
     sending: "发送中",
     send: "发送留言",
-    saved: "已保存到本地 API。",
-    error: "发送失败，请检查 API 是否启动。",
+    saved: "已保存到本地接口。",
+    error: "发送失败，请检查接口是否正在运行。",
   },
   en: {
     navProfile: "Profile",
@@ -47,6 +48,7 @@ const copy = {
     messageLead: "This form currently posts to the local Express API. It can later connect to a database, Notion, Airtable, or email notifications.",
     nameLabel: "Name",
     emailLabel: "Email",
+    emailPlaceholder: "you@example.com",
     messageLabel: "Message",
     namePlaceholder: "Your name",
     messagePlaceholder: "What would you like to discuss?",
@@ -93,7 +95,7 @@ function MessageSection({ language }: { language: Language }) {
         </label>
         <label>
           {t.emailLabel}
-          <input name="email" placeholder="you@example.com" required type="email" />
+          <input name="email" placeholder={t.emailPlaceholder} required type="email" />
         </label>
         <label>
           {t.messageLabel}
@@ -113,7 +115,7 @@ function MessageSection({ language }: { language: Language }) {
 export default function App() {
   const [profile, setProfile] = useState<Profile>(fallbackProfile);
   const [jobs, setJobs] = useState<Job[]>(fallbackJobs);
-  const [language, setLanguage] = useState<Language>("zh");
+  const [language, setLanguage] = useState<Language>("en");
   const t = copy[language];
 
   useEffect(() => {
@@ -129,7 +131,7 @@ export default function App() {
           <button onClick={() => scrollToId("profile")}>{t.navProfile}</button>
           <button onClick={() => scrollToId("jobs")}>{t.navBupa}</button>
           <button onClick={() => scrollToId("message")}>{t.navMessage}</button>
-          <button className="language-toggle" onClick={() => setLanguage((current) => (current === "zh" ? "en" : "zh"))}>
+          <button className="language-toggle" onClick={() => setLanguage((current) => (current === "en" ? "zh" : "en"))}>
             {t.langSwitch}
           </button>
         </div>

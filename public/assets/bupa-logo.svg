@@ -1,0 +1,12 @@
+<svg width="320" height="180" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Bupa logo</title>
+  <rect width="320" height="180" fill="#0086C9"/>
+  <text x="55" y="73" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="44" font-style="italic" font-weight="700">Bupa</text>
+  <path
+    d="M126 102H184C197 102 207 98 215 90L224 78L235 103L250 29L263 128L277 92L286 102H309"
+    stroke="white"
+    stroke-width="9"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

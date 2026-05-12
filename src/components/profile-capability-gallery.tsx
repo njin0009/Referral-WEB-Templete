@@ -12,16 +12,17 @@ type ProfileCapabilityGalleryProps = {
 
 const copy = {
   zh: {
-    techEyebrow: "Technical Capability",
-    techTitle: "技术能力 · Code 项目",
-    techDescription: "展示 Nora 能实际搭产品、写代码、做云端数据管道和部署项目。点击卡片按钮可进入对应项目。",
-    managementEyebrow: "Management Capability",
+    techEyebrow: "技术能力",
+    techTitle: "技术能力 · 代码项目",
+    techDescription: "Nora 能独立搭建产品、编写代码、设计云端数据管道并部署上线。点击卡片按钮可以打开对应项目。",
+    managementEyebrow: "管理能力",
     managementTitle: "管理能力 · 国际工作经历",
     managementDescription:
-      "按 LinkedIn 经历和原始 HTML 重新整理：澳洲本地经验、澳洲/马来西亚/英国远程协作、中国-瑞典车载项目经验，并补充早期财务实习作为职业纪律证明。",
-    profileKicker: "Profile",
-    profileTitleSuffix: "的能力拆解",
-    profileLead: "按原始 HTML 重新拆成两条主线：技术能力突出 code 项目，管理能力突出国际交付与产品经验。",
+      "基于 LinkedIn 经历和原始页面重新整理：澳洲本地经验、澳洲/马来西亚/英国远程协作、中国-瑞典车载交付，以及早期财务实习体现的严谨性。",
+    profileKicker: "个人资料",
+    profileTitleSuffix: "的能力地图",
+    profileLead: "页面拆成两条主线：技术能力通过代码项目呈现，管理能力通过国际交付与产品经历呈现。",
+    view: "查看",
   },
   en: {
     techEyebrow: "Technical Capability",
@@ -34,20 +35,74 @@ const copy = {
     profileKicker: "Profile",
     profileTitleSuffix: "'s Capability Map",
     profileLead: "The original HTML is split into two stronger narratives: technical capability through code projects, and management capability through international delivery experience.",
+    view: "View",
   },
 } satisfies Record<Language, Record<string, string>>;
+
+const technicalZh: Record<string, { title?: string; category?: string; period?: string; summary: string; status?: string; points?: string[] }> = {
+  "cloud-pose": {
+    category: "云端 + 人工智能",
+    period: "2025",
+    points: ["容器化", "云端部署", "计算机视觉"],
+    summary: "云端姿态识别项目，展示 Docker、Kubernetes 和云部署能力，可支撑 Nora 申请全栈软件工程岗位的叙事。",
+    title: "云端姿态识别",
+  },
+  glowcheck: {
+    category: "无服务器数据平台",
+    period: "2026",
+    points: ["云函数", "对象存储", "数据查询", "服务端开发"],
+    status: "密码 1111",
+    summary: "无服务器紫外线防晒建议平台，使用 AWS Lambda、S3、Athena 和 Node.js 构建数据分析管道，响应时间低于 200 毫秒。访问密码：1111。",
+    title: "紫外线防护平台",
+  },
+  pathwayiq: {
+    category: "产品管理 + 全栈开发",
+    period: "2026 年 4 月至今",
+    points: ["产品负责人", "线上项目", "前端开发"],
+    status: "开发中",
+    summary: "面向生产环境的 Next.js / React 产品项目，覆盖用户路径、前端体验、部署迭代和产品定位，是 Nora 展示代码能力与产品负责能力的核心案例。",
+  },
+  studycouch: {
+    category: "全栈项目",
+    period: "2026",
+    points: ["全栈开发", "用户流程", "数据模型", "协作场景"],
+    status: "开发中",
+    summary: "学习与协作场景的全栈项目，展示 Nora 拆解用户流程、信息架构和前后端功能交付的能力。",
+  },
+};
+
+function localCapability(item: CapabilityItem, language: Language) {
+  const zh = technicalZh[item.id];
+  if (language === "en" || !zh) {
+    return item;
+  }
+
+  return {
+    ...item,
+    category: zh.category ?? item.category,
+    period: zh.period ?? item.period,
+    points: zh.points ?? item.points,
+    status: zh.status ?? item.status,
+    summary: zh.summary,
+    title: zh.title ?? item.title,
+  };
+}
 
 function CapabilityGrid({
   eyebrow,
   title,
   description,
   items,
+  language,
 }: {
   eyebrow: string;
   title: string;
   description: string;
   items: CapabilityItem[];
+  language: Language;
 }) {
+  const t = copy[language];
+
   return (
     <div className="capability-block">
       <div className="mb-8">
@@ -56,16 +111,19 @@ function CapabilityGrid({
         <p className="mt-3 max-w-3xl text-muted-foreground">{description}</p>
       </div>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2" style={{ perspective: "1000px" }}>
-        {items.map((item) => (
+        {items.map((rawItem) => {
+          const item = localCapability(rawItem, language);
+          return (
           <LocationCard
-            actionLabel={item.status ?? "View"}
+            actionLabel={item.status ?? t.view}
             address={`${item.period} · ${item.summary}`}
             city={item.title}
             directionsUrl={item.link ?? "https://github.com/njin0009"}
             imageUrl={item.image}
             key={item.id}
           />
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -109,7 +167,7 @@ export default function ProfileCapabilityGallery({
     <section className="section profile-capability-section" id="profile">
       <div className="mx-auto mb-12 max-w-4xl text-center">
         <div className="section-kicker">{t.profileKicker}</div>
-        <h2>{language === "zh" ? `${profile.name} ${t.profileTitleSuffix}` : `${profile.name}${t.profileTitleSuffix}`}</h2>
+        <h2>{profile.name}{t.profileTitleSuffix}</h2>
         <p className="section-lead mx-auto">
           {t.profileLead}
         </p>
@@ -120,6 +178,7 @@ export default function ProfileCapabilityGallery({
           description={t.techDescription}
           eyebrow={t.techEyebrow}
           items={technical}
+          language={language}
           title={t.techTitle}
         />
         <ManagementExperience items={management} language={language} />
