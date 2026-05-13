@@ -82,10 +82,9 @@ const copy = {
     closeDate: "截止",
     coverLetter: "下载求职信",
     coverLetterTitle: "Nora Jin 求职信",
-    fit: "匹配",
     job: "职位编号",
-    keyPoints: "Nora 适合这个职位的关键点",
-    noraMatch: "Nora 适合的原因",
+    keyPoints: "相关候选人证据",
+    noraMatch: "Nora 的相关证据",
     referralAngle: "推荐角度",
     requirements: "职位要求关键词",
     leftCards: "向左移动职位卡片",
@@ -98,7 +97,7 @@ const copy = {
     resumeTitle: "Nora Jin 简历",
     rightCards: "向右移动职位卡片",
     role: "职位",
-    subtitle: "点击卡片查看对应职位匹配信息。",
+    subtitle: "点击卡片查看职位信息、要求关键词和 Nora 的相关证据。",
     title: "Nora 希望获得内推的职位",
     url: "链接",
     openRole: "打开 BUPA 职位",
@@ -109,18 +108,17 @@ const copy = {
     allZip: "Download All as ZIP",
     coverLetter: "Download Cover Letter",
     coverLetterTitle: "Nora Jin Cover Letter",
-    fit: "fit",
     job: "Job",
     title: "Roles Nora Hopes to Be Referred For",
-    subtitle: "Click a card to view the matching role details.",
+    subtitle: "Click a card to view role details and supporting evidence.",
     leftCards: "Move role cards left",
     rightCards: "Move role cards right",
     closeDate: "Closes",
     previousDetail: "Show previous role detail",
     nextDetail: "Show next role detail",
     pdf: "Download Resume",
-    keyPoints: "Why Nora fits this role",
-    noraMatch: "Why Nora fits",
+    keyPoints: "Relevant candidate evidence",
+    noraMatch: "Nora's relevant evidence",
     referralAngle: "Referral angle",
     requirements: "Role requirements",
     priorityLabel: "Top target roles:",
@@ -236,7 +234,7 @@ const jobZh: Record<string, { title: string; team: string; location: string; con
       "普通话或粤语对博士山客户群是加分项",
     ],
     fitReasons: [
-      "普通话能力和博士山社区匹配能帮助 Nora 进行真实有效的客户沟通",
+      "普通话能力和博士山社区联系能帮助 Nora 进行真实有效的客户沟通",
       "HelloRide 市场/用户研究支持需求挖掘、客户分层和价值表达",
       "财务实习的准确性和利益相关方沟通经验支持可靠、细致的服务形象",
     ],
@@ -614,9 +612,6 @@ export default function ReferralRoles({ jobs, language, profile }: ReferralRoles
                       className="h-full w-full object-cover grayscale transition-all duration-300 group-hover:scale-105 group-hover:grayscale-0"
                       src={job.image}
                     />
-                    <div className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-neutral-900">
-                      {job.fit}% {t.fit}
-                    </div>
                     <div className="absolute bottom-0 w-full rounded-lg bg-neutral-100/90 p-3 backdrop-blur">
                       <h3 className="text-base font-semibold leading-tight text-neutral-900">{job.title}</h3>
                       <p className="mt-1 text-sm text-neutral-600">
@@ -677,7 +672,7 @@ export default function ReferralRoles({ jobs, language, profile }: ReferralRoles
                   return (
                     <>
                 <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-neutral-500">
-                  {selectedJob.jobNumber} · {selectedJob.fit}% {t.fit} · {t.closeDate} {selectedJob.closeDate}
+                  {selectedJob.jobNumber} · {t.closeDate} {selectedJob.closeDate}
                 </p>
                 <h2 className="mb-2 text-2xl font-semibold leading-tight text-neutral-950 md:text-[2rem]">{selected.title}</h2>
                 <p className="mb-3 text-sm text-neutral-600 md:text-base">

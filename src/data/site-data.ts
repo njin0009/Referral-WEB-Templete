@@ -3,7 +3,6 @@ export type Job = {
   title: string;
   team: string;
   location: string;
-  fit: number;
   contract: string;
   reason: string;
   jobNumber: string;
@@ -279,7 +278,6 @@ export const jobs: Job[] = [
     title: "Digital Product Manager",
     team: "Byte Squad / Bupa Dental",
     location: "Melbourne",
-    fit: 92,
     contract: "Permanent Full Time",
     jobNumber: "#61680",
     closeDate: "25/05/2026",
@@ -305,7 +303,6 @@ export const jobs: Job[] = [
     title: "Technology Application Owner - Optical & Hearing",
     team: "Optical & Hearing Apps",
     location: "Melbourne",
-    fit: 78,
     contract: "Permanent Full Time",
     jobNumber: "#61810",
     closeDate: "01/06/2026",
@@ -331,7 +328,6 @@ export const jobs: Job[] = [
     title: "Full Stack Software Engineer",
     team: "Digital Engineering",
     location: "Melbourne",
-    fit: 68,
     contract: "Fixed Term - 1 year",
     jobNumber: "#60605",
     closeDate: "22/05/2026",
@@ -357,7 +353,6 @@ export const jobs: Job[] = [
     title: "Senior Customer & Product Insights Analyst",
     team: "Blua / Product Insights",
     location: "Melbourne",
-    fit: 48,
     contract: "Permanent Full Time",
     jobNumber: "#61703",
     closeDate: "29/05/2026",
@@ -382,7 +377,6 @@ export const jobs: Job[] = [
     title: "Digital Data Specialist",
     team: "Digital Data",
     location: "Melbourne",
-    fit: 42,
     contract: "Fixed Term",
     jobNumber: "#61386",
     closeDate: "15/05/2026",
@@ -407,7 +401,6 @@ export const jobs: Job[] = [
     title: "Customer Value Specialist - Box Hill",
     team: "Retail Health Insurance",
     location: "Box Hill",
-    fit: 38,
     contract: "Permanent Full Time",
     jobNumber: "#61786",
     closeDate: "02/06/2026",
@@ -422,7 +415,7 @@ export const jobs: Job[] = [
       "Mandarin or Cantonese is advantageous for the Box Hill customer base",
     ],
     fitReasons: [
-      "Mandarin fluency and Box Hill community fit give Nora a practical advantage for customer conversations",
+      "Mandarin fluency and Box Hill community connection give Nora a practical advantage for customer conversations",
       "HelloRide market/user research supports needs-based questioning, customer segmentation, and value communication",
       "Finance internship accuracy and stakeholder communication experience support trustworthy, detail-oriented service",
     ],
