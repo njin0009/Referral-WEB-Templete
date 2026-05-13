@@ -51,10 +51,10 @@ export type CapabilityItem = {
 
 export const profile: Profile = {
   name: "Nora Jin",
-  role: "Product-minded technologist for BUPA digital roles",
+  role: "Product-minded technologist for Bupa digital roles",
   location: "Melbourne, Australia",
   summary:
-    "BUPA-relevant candidate profile across product strategy, international delivery, engineering QA, and stakeholder communication.",
+    "Bupa-relevant candidate profile across product strategy, international delivery, engineering QA, and stakeholder communication.",
   email: "nuojin01@gmail.com",
   visa: "Eligible to apply for the 485 post-study work visa after graduating in June.",
   highlights: [

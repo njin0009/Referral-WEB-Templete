@@ -11,7 +11,7 @@ export async function getProfile(): Promise<Profile> {
 export async function getJobs(): Promise<Job[]> {
   const response = await fetch("/api/jobs");
   if (!response.ok) {
-    throw new Error("Unable to load BUPA jobs");
+    throw new Error("Unable to load Bupa jobs");
   }
   return response.json();
 }

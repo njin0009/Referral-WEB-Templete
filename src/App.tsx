@@ -20,9 +20,9 @@ function scrollToId(id: string) {
 
 const copy = {
   zh: {
-    siteTitle: "Nora Jin｜BUPA 内推作品集",
+    siteTitle: "Nora Jin｜Bupa 内推作品集",
     navProfile: "个人资料",
-    navBupa: "BUPA 职位",
+    navBupa: "Bupa 职位",
     navMessage: "留言",
     langSwitch: "English",
     messageKicker: "留言",
@@ -40,9 +40,9 @@ const copy = {
     error: "暂时没有发送成功，请稍后再试，或直接通过页面上的邮箱联系 Nora。",
   },
   en: {
-    siteTitle: "Nora Jin · BUPA Referral Portfolio",
+    siteTitle: "Nora Jin · Bupa Referral Portfolio",
     navProfile: "Profile",
-    navBupa: "BUPA Positions",
+    navBupa: "Bupa Positions",
     navMessage: "Message",
     langSwitch: "中文",
     messageKicker: "Message",
