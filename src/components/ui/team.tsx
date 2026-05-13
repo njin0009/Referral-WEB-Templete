@@ -32,6 +32,9 @@ const copy = {
     fit: "匹配",
     job: "职位编号",
     keyPoints: "Nora 适合这个职位的关键点",
+    noraMatch: "Nora 适合的原因",
+    referralAngle: "推荐角度",
+    requirements: "职位要求关键词",
     leftCards: "向左移动职位卡片",
     nextDetail: "查看下一个职位详情",
     pdf: "下载简历",
@@ -45,6 +48,7 @@ const copy = {
     subtitle: "点击卡片查看对应职位匹配信息。",
     title: "Nora 希望获得内推的职位",
     url: "链接",
+    openRole: "打开 BUPA 职位",
     visaLabel: "签证",
     rolePosition: "职位",
   },
@@ -63,22 +67,36 @@ const copy = {
     nextDetail: "Show next role detail",
     pdf: "Download Resume",
     keyPoints: "Why Nora fits this role",
+    noraMatch: "Why Nora fits",
+    referralAngle: "Referral angle",
+    requirements: "Role requirements",
     priorityLabel: "Top target roles:",
     techRoles: "Tech and product",
     customerServiceRoles: "Customer service",
     resumeTitle: "Nora Jin Resume",
     role: "Role",
     url: "URL",
+    openRole: "Open BUPA role",
     visaLabel: "Visa",
     rolePosition: "Role",
   },
 } satisfies Record<Language, Record<string, string>>;
 
-const jobZh: Record<string, { title: string; team: string; location: string; contract: string; reason: string; strengths: string[] }> = {
+const jobZh: Record<string, { title: string; team: string; location: string; contract: string; reason: string; roleRequirements: string[]; fitReasons: string[]; strengths: string[] }> = {
   j1: {
     contract: "永久全职",
     location: "墨尔本",
-    reason: "JD 关键词包括数字产品路线图、用户发现、预约路径、优先级 backlog、敏捷小队交付、数据分析和实验。Nora 的匹配证据包括 ECARX 产品路线图、Go/No-Go 发布门、Jira 仪表盘、Volvo/Polestar 跨职能交付，以及 PathwayIQ/GlowCheck 产品搭建和 HelloRide 澳洲市场研究。",
+    reason: "Nora 能把客户旅程转化为可交付的数字产品，同时也能和工程、测试、业务团队顺畅沟通。",
+    roleRequirements: [
+      "负责数字产品路线图、用户发现、预约路径和优先级 backlog",
+      "带动产品、设计、工程、测试和业务团队完成敏捷小队交付",
+      "用数据分析、实验和客户洞察提升数字体验与业务结果",
+    ],
+    fitReasons: [
+      "ECARX 经历覆盖产品路线图、Go/No-Go 发布门、Jira 仪表盘和 Volvo/Polestar 跨职能交付",
+      "PathwayIQ 与 GlowCheck 展示了用户旅程、前端体验、API 和部署迭代的产品负责能力",
+      "HelloRide 提供澳洲市场研究、利益相关方分析、价值主张和产品定位证据",
+    ],
     strengths: ["产品路线图", "用户发现与 Backlog", "敏捷小队交付", "数据分析与实验"],
     team: "Byte Squad / Bupa 牙科",
     title: "数字产品经理",
@@ -86,7 +104,17 @@ const jobZh: Record<string, { title: string; team: string; location: string; con
   j2: {
     contract: "永久全职",
     location: "墨尔本",
-    reason: "JD 关键词包括应用生命周期、发布与变更管理、供应商/MSP 沟通、Azure 或云端 API、关系型数据库、应用支持、监控和业务方沟通。Nora 的匹配证据包括 ECARX 发布准备、系统集成、Go/No-Go 上线门、Volvo/Polestar 利益相关方协调、Python/Linux 自动化，以及 AWS/API 云平台交付。",
+    reason: "Nora 是带技术背景的产品/应用负责人，能覆盖发布准备、供应商协调和系统集成沟通。",
+    roleRequirements: [
+      "管理应用生命周期、发布/变更控制、支持、监控和持续改进",
+      "协调业务方、IT、供应商/MSP、云 API 和关系型数据平台",
+      "保证企业应用可靠、安全、合规，并与业务服务目标一致",
+    ],
+    fitReasons: [
+      "ECARX 经历覆盖发布准备、系统集成、Go/No-Go 上线门、问题分诊和交付治理",
+      "Volvo/Polestar 项目证明 Nora 能协调工程、产品、QA 和跨国团队",
+      "Python/Linux 自动化与 AWS/API 项目让她具备可信的云端和技术排障表达",
+    ],
     strengths: ["应用生命周期", "发布与变更管理", "供应商与业务沟通", "云 API 与数据库"],
     team: "视光与听力应用",
     title: "技术应用负责人 - 视光与听力",
@@ -94,7 +122,17 @@ const jobZh: Record<string, { title: string; team: string; location: string; con
   j3: {
     contract: "一年固定期限",
     location: "墨尔本",
-    reason: "JD 关键词包括 React、Next.js、.NET Core API、Azure Functions、Azure Service Bus、SQL Server、Docker、CI/CD、可测试设计、回归测试和敏捷交付。Nora 可以用 PathwayIQ 证明 React/Next.js，用 GlowCheck 证明 serverless API 和数据管道，用云端姿态识别项目证明 Docker/Kubernetes，并用 QA 经历证明回归测试思维。",
+    reason: "Nora 已具备 React/Next.js、云 API、Docker/Kubernetes 和 QA 质量意识，.NET/Azure 是主要学习补齐项。",
+    roleRequirements: [
+      "使用 React、Next.js、.NET Core API、Azure Functions、Service Bus、SQL Server 和 CI/CD",
+      "用 Docker、设计模式、回归测试和敏捷实践交付可维护代码",
+      "参与分析、设计、编码、测试、上线和生产支持",
+    ],
+    fitReasons: [
+      "PathwayIQ 直接证明 React/Next.js 产品交付、用户流程、前端架构和部署迭代",
+      "GlowCheck 证明 serverless API、AWS Lambda/API Gateway、Athena/S3 数据能力和低延迟后端",
+      "云端姿态识别与 QA 经历补充 Docker/Kubernetes、性能测试、回归测试和缺陷分析能力",
+    ],
     strengths: ["React 与 Next.js", "Serverless API", "Docker/Kubernetes", "测试思维"],
     team: "数字工程",
     title: "全栈软件工程师",
@@ -102,7 +140,17 @@ const jobZh: Record<string, { title: string; team: string; location: string; con
   j4: {
     contract: "永久全职",
     location: "墨尔本",
-    reason: "JD 关键词包括客户与产品洞察、线上/线下数据、SQL 或 Python 脚本、Power BI 仪表盘、用户旅程优化、利益相关方 storytelling，以及 Adobe 或 Google Analytics。Nora 的证据包括 GlowCheck 的 S3/Lambda/Athena 数据管道、PathwayIQ 劳动力市场数据集、Jira 交付仪表盘，以及 HelloRide/FutureLab 的产品发现经历。",
+    reason: "Nora 是偏产品思维的数据分析候选人，能把用户旅程洞察、数据管道、仪表盘和业务沟通连起来。",
+    roleRequirements: [
+      "把客户/产品数据转化为用户旅程优化、产品决策和商业影响洞察",
+      "使用 SQL 或 Python、Power BI、网页分析和线上/线下数据源",
+      "在敏捷环境中向产品、数字和业务方清晰表达分析结论",
+    ],
+    fitReasons: [
+      "GlowCheck 提供 S3、Lambda、Athena、API 和公共健康数据的数据管道证据",
+      "PathwayIQ 使用劳动力市场数据集和数据标签支持职业决策旅程",
+      "Jira 仪表盘、HelloRide 研究和 FutureLab 产品发现经历支持洞察表达和利益相关方沟通",
+    ],
     strengths: ["Python 分析", "用户旅程洞察", "仪表盘表达", "产品决策支持"],
     team: "Blua / 产品洞察",
     title: "高级客户与产品洞察分析师",
@@ -110,7 +158,17 @@ const jobZh: Record<string, { title: string; team: string; location: string; con
   j5: {
     contract: "固定期限",
     location: "墨尔本",
-    reason: "JD 关键词包括数字数据层、tagging 策略、指标追踪与趋势、CRO/个性化支持、用户旅程分析、数据集成、backlog 估算，以及数据驱动决策文化。Nora 最强的证据是 GlowCheck 的 S3/Lambda/Athena 数据管道、API 数据校验、低于 200ms 的 serverless 后端、PathwayIQ 数据标签，以及 QA 背景带来的稳定数据采集意识。",
+    reason: "Nora 是懂数据质量和数字产品的技术候选人，可以讨论数据层、追踪质量、API 校验和用户旅程分析。",
+    roleRequirements: [
+      "维护数字数据层、tagging 策略、指标追踪、CRO/个性化支持和用户旅程分析",
+      "整合数字与企业数据，评估数据 backlog，并支持 reporting/insights 团队",
+      "推动稳定数据采集、证据驱动决策和数字数据最佳实践",
+    ],
+    fitReasons: [
+      "GlowCheck 提供 S3/Lambda/Athena 管道、API 数据校验、serverless 后端和指标思维证据",
+      "PathwayIQ 展示结构化数据标签、公共数据集成和面向产品的数据呈现",
+      "QA 背景强化了稳定数据采集、验证纪律和回归意识",
+    ],
     strengths: ["数据层思维", "Athena/S3 管道", "指标校验", "旅程分析"],
     team: "数字数据",
     title: "数字数据专员",
@@ -118,7 +176,17 @@ const jobZh: Record<string, { title: string; team: string; location: string; con
   jcs1: {
     contract: "永久全职",
     location: "博士山",
-    reason: "JD 关键词包括客户优先销售、基于需求的产品推荐、会员教育、社区关系、健康保险价值、普通话/粤语优势和门店服务。Nora 可以突出普通话、博士山社区匹配、HelloRide 市场与用户研究、财务准确性，以及利益相关方沟通；这个职位更适合作为客户服务方向的备选。",
+    reason: "这是客户服务方向的备选职位，Nora 的普通话、研究能力和沟通能力可以服务博士山本地社区。",
+    roleRequirements: [
+      "完成客户优先销售、基于需求的产品推荐、会员教育和门店服务",
+      "建立社区关系，并向不同背景客户清晰解释健康保险价值",
+      "普通话或粤语对博士山客户群是加分项",
+    ],
+    fitReasons: [
+      "普通话能力和博士山社区匹配能帮助 Nora 进行真实有效的客户沟通",
+      "HelloRide 市场/用户研究支持需求挖掘、客户分层和价值表达",
+      "财务实习的准确性和利益相关方沟通经验支持可靠、细致的服务形象",
+    ],
     strengths: ["普通话优势", "需求式推荐", "社区沟通", "客户优先沟通"],
     team: "零售健康保险",
     title: "客户价值专员 - 博士山",
@@ -134,11 +202,129 @@ function localVisa(profile: Profile, language: Language) {
   return language === "zh" ? "6 月毕业后可申请 485 毕业生工作签证。" : profile.visa;
 }
 
+const highlightTerms = {
+  zh: [
+    "产品路线图",
+    "用户发现",
+    "预约路径",
+    "Backlog",
+    "敏捷",
+    "数据分析",
+    "应用生命周期",
+    "发布",
+    "变更",
+    "供应商",
+    "业务方",
+    "云 API",
+    "React",
+    "Next.js",
+    ".NET",
+    "Azure",
+    "CI/CD",
+    "Docker",
+    "Kubernetes",
+    "回归测试",
+    "客户",
+    "产品洞察",
+    "Python",
+    "Power BI",
+    "用户旅程",
+    "Athena",
+    "Lambda",
+    "S3",
+    "普通话",
+    "博士山",
+    "需求",
+    "社区",
+  ],
+  en: [
+    "roadmap",
+    "discovery",
+    "booking pathways",
+    "prioritised backlog",
+    "Agile",
+    "squad delivery",
+    "analytics",
+    "experimentation",
+    "application lifecycle",
+    "release",
+    "change control",
+    "vendor",
+    "stakeholder",
+    "cloud APIs",
+    "relational data",
+    "React",
+    "Next.js",
+    ".NET Core",
+    "Azure Functions",
+    "Service Bus",
+    "SQL Server",
+    "CI/CD",
+    "Docker",
+    "Kubernetes",
+    "regression",
+    "customer",
+    "product insights",
+    "SQL",
+    "Python",
+    "Power BI",
+    "journey",
+    "data layer",
+    "tagging",
+    "CRO",
+    "Athena",
+    "Lambda",
+    "S3",
+    "Mandarin",
+    "Box Hill",
+    "community",
+  ],
+} satisfies Record<Language, string[]>;
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function renderHighlightedText(text: string, language: Language) {
+  const terms = highlightTerms[language].sort((a, b) => b.length - a.length);
+  const pattern = new RegExp(`(${terms.map(escapeRegExp).join("|")})`, language === "en" ? "gi" : "g");
+
+  return text.split(pattern).map((part, index) => {
+    const isMatch = terms.some((term) =>
+      language === "en" ? term.toLowerCase() === part.toLowerCase() : term === part,
+    );
+
+    return isMatch ? (
+      <strong className="font-semibold text-neutral-950" key={`${part}-${index}`}>
+        {part}
+      </strong>
+    ) : (
+      part
+    );
+  });
+}
+
+function getMatchCategory(jobId: string, index: number): "technical" | "management" {
+  const technicalMap: Record<string, number[]> = {
+    j2: [1],
+    j3: [0, 1, 2],
+    j4: [1],
+    j5: [0, 1, 2],
+  };
+
+  return technicalMap[jobId]?.includes(index) ? "technical" : "management";
+}
+
+function scrollToCapability(category: "technical" | "management") {
+  const targetId = category === "technical" ? "technical-capability" : "management-capability";
+  document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 export default function ReferralRoles({ jobs, language, profile }: ReferralRolesProps) {
-  const railRef = useRef<HTMLDivElement>(null);
   const detailRef = useRef<HTMLDivElement>(null);
   const [selectedJob, setSelectedJob] = useState<Job>(jobs[0]);
-  const [isManuallyPaused, setIsManuallyPaused] = useState(false);
+  const [carouselDirection, setCarouselDirection] = useState<"left" | "right">("right");
+  const [activeMatchIndex, setActiveMatchIndex] = useState<number | null>(null);
   const t = copy[language];
   const recommendedTechJobs = ["j1", "j2", "j3", "j4", "j5"]
     .map((id) => jobs.find((job) => job.id === id))
@@ -147,26 +333,19 @@ export default function ReferralRoles({ jobs, language, profile }: ReferralRoles
     .map((id) => jobs.find((job) => job.id === id))
     .filter((job): job is Job => Boolean(job));
   const selectedJobIndex = Math.max(0, jobs.findIndex((job) => job.id === selectedJob.id));
+  const carouselJobs = [...jobs, ...jobs, ...jobs, ...jobs];
 
   function moveCarousel(direction: "left" | "right") {
-    const rail = railRef.current;
-    if (!rail) {
-      return;
-    }
-
-    setIsManuallyPaused(true);
-    rail.scrollBy({
-      left: direction === "left" ? -320 : 320,
-      behavior: "smooth",
-    });
-    window.setTimeout(() => setIsManuallyPaused(false), 3000);
+    setCarouselDirection(direction);
   }
 
-  function showJobDetail(job: Job) {
+  function showJobDetail(job: Job, shouldScroll = true) {
     setSelectedJob(job);
-    window.setTimeout(() => {
-      detailRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-    }, 0);
+    if (shouldScroll) {
+      window.setTimeout(() => {
+        detailRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 0);
+    }
   }
 
   function stepSelectedJob(direction: "previous" | "next") {
@@ -176,7 +355,7 @@ export default function ReferralRoles({ jobs, language, profile }: ReferralRoles
       direction === "previous"
         ? (fallbackIndex - 1 + jobs.length) % jobs.length
         : (fallbackIndex + 1) % jobs.length;
-    showJobDetail(jobs[nextIndex]);
+    showJobDetail(jobs[nextIndex], false);
   }
 
   function safeFilePart(value: string) {
@@ -325,9 +504,9 @@ endstream endobj`,
             <ChevronRight className="h-6 w-6" />
           </button>
 
-          <div className="job-carousel" ref={railRef}>
-            <div className={`job-carousel-track ${isManuallyPaused ? "is-paused" : ""}`}>
-              {[...jobs, ...jobs].map((rawJob, index) => {
+          <div className="job-carousel">
+            <div className={`job-carousel-track ${carouselDirection === "left" ? "is-reverse" : ""}`}>
+              {carouselJobs.map((rawJob, index) => {
                 const job = localJob(rawJob, language);
 
                 return (
@@ -361,7 +540,7 @@ endstream endobj`,
           </div>
         </div>
 
-        <div className="job-detail-panel mx-auto mt-12 max-w-5xl px-6 lg:px-0" ref={detailRef}>
+        <div className="job-detail-panel mx-auto mt-10 max-w-7xl px-6 lg:px-8" ref={detailRef}>
           <div className="relative">
             <button
               aria-label={t.previousDetail}
@@ -379,44 +558,12 @@ endstream endobj`,
             >
               <ChevronRight className="h-5 w-5" />
             </button>
-            <div className="grid gap-8 rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-left shadow-sm md:grid-cols-[0.9fr_1.1fr]">
-              <div className="overflow-hidden rounded-xl bg-neutral-200">
-                <img alt={selectedJob.title} className="h-full min-h-72 w-full object-cover" src={selectedJob.image} />
-              </div>
-              <div>
-                {(() => {
-                  const selected = localJob(selectedJob, language);
-
-                  return (
-                    <>
-                <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-neutral-500">
-                  {selectedJob.jobNumber} · {selectedJob.fit}% {t.fit} · {t.closeDate} {selectedJob.closeDate}
-                </p>
-                <h2 className="mb-3 text-3xl font-semibold leading-tight text-neutral-950">{selected.title}</h2>
-                <p className="mb-4 text-neutral-600">
-                  {selected.team} · {selected.location} · {selected.contract}
-                </p>
-                <a
-                  className="mb-6 inline-flex max-w-full items-center gap-2 break-all text-sm font-semibold text-neutral-900 underline underline-offset-4"
-                  href={selectedJob.url}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <ExternalLink className="h-4 w-4 shrink-0" />
-                  {selectedJob.url}
-                </a>
-                <p className="mb-5 leading-relaxed text-neutral-700">{selected.reason}</p>
-                <div className="mb-6">
-                  <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-500">{t.keyPoints}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {selected.strengths.map((point) => (
-                      <span className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-neutral-800 ring-1 ring-neutral-200" key={point}>
-                        {point}
-                      </span>
-                    ))}
-                  </div>
+            <div className="role-detail-card grid gap-6 rounded-2xl border border-neutral-200 bg-neutral-50 p-5 text-left shadow-sm lg:h-[640px] lg:grid-cols-[0.9fr_1.45fr] xl:h-[600px]">
+              <div className="role-detail-media">
+                <div className="role-detail-image overflow-hidden rounded-xl bg-neutral-50">
+                  <img alt={selectedJob.title} className="max-h-full w-full object-contain" src={selectedJob.image} />
                 </div>
-                <div className="flex flex-wrap gap-3">
+                <div className="role-download-panel flex flex-wrap justify-center gap-3">
                   <button className="download-action" onClick={() => downloadRolePdf(selectedJob, "resume")} type="button">
                     <Download className="h-4 w-4" />
                     {t.pdf}
@@ -429,6 +576,97 @@ endstream endobj`,
                     <Download className="h-4 w-4" />
                     {t.allZip}
                   </button>
+                </div>
+              </div>
+              <div className="role-detail-content">
+                {(() => {
+                  const selected = localJob(selectedJob, language);
+
+                  return (
+                    <>
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-neutral-500">
+                  {selectedJob.jobNumber} · {selectedJob.fit}% {t.fit} · {t.closeDate} {selectedJob.closeDate}
+                </p>
+                <h2 className="mb-2 text-2xl font-semibold leading-tight text-neutral-950 md:text-[2rem]">{selected.title}</h2>
+                <p className="mb-3 text-sm text-neutral-600 md:text-base">
+                  {selected.team} · {selected.location} · {selected.contract}
+                </p>
+                <a
+                  className="mb-4 inline-flex max-w-full items-center gap-2 truncate text-xs font-semibold text-neutral-900 underline underline-offset-4 md:text-sm"
+                  href={selectedJob.url}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <ExternalLink className="h-4 w-4 shrink-0" />
+                  {t.openRole}
+                </a>
+                <div className="mb-4 rounded-xl border border-neutral-200 bg-white p-3.5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">{t.referralAngle}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-neutral-800 md:text-[15px]">
+                    {renderHighlightedText(selected.reason, language)}
+                  </p>
+                </div>
+                <div className="mb-4 grid gap-3 lg:grid-cols-2">
+                  <div className="role-match-box rounded-xl border border-neutral-200 bg-white p-3.5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">{t.requirements}</p>
+                    <ul className="mt-2.5 space-y-2">
+                      {selected.roleRequirements.map((item, index) => (
+                        <li
+                          className={`match-row flex gap-2.5 text-[13px] leading-snug text-neutral-700 md:text-sm ${activeMatchIndex === index ? "is-active" : ""}`}
+                          key={item}
+                          onClick={() => scrollToCapability(getMatchCategory(selectedJob.id, index))}
+                          onKeyDown={(event) => {
+                            if (event.key === "Enter" || event.key === " ") {
+                              event.preventDefault();
+                              scrollToCapability(getMatchCategory(selectedJob.id, index));
+                            }
+                          }}
+                          onMouseEnter={() => setActiveMatchIndex(index)}
+                          onMouseLeave={() => setActiveMatchIndex(null)}
+                          role="button"
+                          tabIndex={0}
+                        >
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-neutral-950" />
+                          <span>{renderHighlightedText(item, language)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="role-match-box rounded-xl border border-neutral-200 bg-white p-3.5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">{t.noraMatch}</p>
+                    <ul className="mt-2.5 space-y-2">
+                      {selected.fitReasons.map((item, index) => (
+                        <li
+                          className={`match-row match-row-blue flex gap-2.5 text-[13px] leading-snug text-neutral-700 md:text-sm ${activeMatchIndex === index ? "is-active" : ""}`}
+                          key={item}
+                          onClick={() => scrollToCapability(getMatchCategory(selectedJob.id, index))}
+                          onKeyDown={(event) => {
+                            if (event.key === "Enter" || event.key === " ") {
+                              event.preventDefault();
+                              scrollToCapability(getMatchCategory(selectedJob.id, index));
+                            }
+                          }}
+                          onMouseEnter={() => setActiveMatchIndex(index)}
+                          onMouseLeave={() => setActiveMatchIndex(null)}
+                          role="button"
+                          tabIndex={0}
+                        >
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#0086C9]" />
+                          <span>{renderHighlightedText(item, language)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-neutral-500">{t.keyPoints}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {selected.strengths.map((point) => (
+                      <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-neutral-800 ring-1 ring-neutral-200 md:text-sm" key={point}>
+                        {point}
+                      </span>
+                    ))}
+                  </div>
                 </div>
                     </>
                   );
@@ -446,7 +684,7 @@ endstream endobj`,
                     aria-current={isActive ? "step" : undefined}
                     className={`job-detail-dot ${isActive ? "is-active" : ""}`}
                     key={job.id}
-                    onClick={() => showJobDetail(job)}
+                    onClick={() => showJobDetail(job, false)}
                     title={`${index + 1}. ${local.title}`}
                     type="button"
                   >

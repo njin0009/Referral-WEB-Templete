@@ -104,7 +104,7 @@ function CapabilityGrid({
   const t = copy[language];
 
   return (
-    <div className="capability-block">
+    <div className="capability-block" id="technical-capability">
       <div className="mb-8">
         <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">{eyebrow}</p>
         <h3 className="text-3xl font-bold tracking-tight text-foreground">{title}</h3>
@@ -139,7 +139,7 @@ function ManagementExperience({
   const t = copy[language];
 
   return (
-    <div className="capability-block">
+    <div className="capability-block" id="management-capability">
       <div className="mb-8">
         <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
           {t.managementEyebrow}

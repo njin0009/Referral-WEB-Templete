@@ -20,13 +20,14 @@ function scrollToId(id: string) {
 
 const copy = {
   zh: {
+    siteTitle: "Nora Jin｜BUPA 内推作品集",
     navProfile: "个人资料",
     navBupa: "BUPA 职位",
     navMessage: "留言",
     langSwitch: "English",
     messageKicker: "留言",
     messageTitle: "给 Nora 留言",
-    messageLead: "这个表单目前会提交到本地 Express 接口，后续可以接入数据库、Notion、Airtable 或邮件通知。",
+    messageLead: "如果你愿意为 Nora 提供内推、面试建议或职位线索，可以在这里留下联系方式和简短说明。Nora 会认真查看并尽快回复。",
     nameLabel: "姓名",
     emailLabel: "邮箱",
     emailPlaceholder: "你的邮箱",
@@ -35,17 +36,18 @@ const copy = {
     messagePlaceholder: "想聊什么？",
     sending: "发送中",
     send: "发送留言",
-    saved: "已保存到本地接口。",
-    error: "发送失败，请检查接口是否正在运行。",
+    saved: "谢谢，Nora 已收到你的留言。",
+    error: "暂时没有发送成功，请稍后再试，或直接通过页面上的邮箱联系 Nora。",
   },
   en: {
+    siteTitle: "Nora Jin · BUPA Referral Portfolio",
     navProfile: "Profile",
-    navBupa: "BUPA",
+    navBupa: "BUPA Positions",
     navMessage: "Message",
     langSwitch: "中文",
     messageKicker: "Message",
     messageTitle: "Leave Nora a Message",
-    messageLead: "This form currently posts to the local Express API. It can later connect to a database, Notion, Airtable, or email notifications.",
+    messageLead: "If you can offer a referral, role lead, hiring advice, or a quick conversation, please leave a short note here. Nora will review it carefully and follow up.",
     nameLabel: "Name",
     emailLabel: "Email",
     emailPlaceholder: "you@example.com",
@@ -54,8 +56,8 @@ const copy = {
     messagePlaceholder: "What would you like to discuss?",
     sending: "Sending",
     send: "Send Message",
-    saved: "Saved to the local API.",
-    error: "Failed to send. Please check whether the API is running.",
+    saved: "Thank you. Nora has received your message.",
+    error: "The message could not be sent right now. Please try again later or contact Nora directly by email.",
   },
 } satisfies Record<Language, Record<string, string>>;
 
@@ -126,11 +128,13 @@ export default function App() {
   return (
     <main>
       <nav>
-        <strong>{profile.name}</strong>
-        <div>
+        <strong className="site-brand">{t.siteTitle}</strong>
+        <div className="nav-links">
           <button onClick={() => scrollToId("profile")}>{t.navProfile}</button>
           <button onClick={() => scrollToId("jobs")}>{t.navBupa}</button>
           <button onClick={() => scrollToId("message")}>{t.navMessage}</button>
+        </div>
+        <div className="nav-actions">
           <button className="language-toggle" onClick={() => setLanguage((current) => (current === "en" ? "zh" : "en"))}>
             {t.langSwitch}
           </button>

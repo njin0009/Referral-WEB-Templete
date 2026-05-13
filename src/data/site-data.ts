@@ -11,6 +11,8 @@ export type Job = {
   url: string;
   image: string;
   priority?: number;
+  roleRequirements: string[];
+  fitReasons: string[];
   strengths: string[];
 };
 
@@ -285,7 +287,17 @@ export const jobs: Job[] = [
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80",
     priority: 1,
     reason:
-      "JD keywords: digital product roadmap, discovery, booking pathways, prioritised backlog, squad delivery, analytics, and experimentation. Nora matches through ECARX roadmap ownership, Go/No-Go release gates, Jira dashboards, Volvo/Polestar cross-functional delivery, PathwayIQ and GlowCheck product builds, and HelloRide Australian market research.",
+      "A product manager who can translate customer journeys into shipped digital experiences, while also speaking fluently with engineering teams.",
+    roleRequirements: [
+      "Own digital product roadmap, discovery, booking pathways, and prioritised backlog",
+      "Lead Agile squad delivery across product, design, engineering, testing, and business teams",
+      "Use analytics, experimentation, and customer insight to improve digital outcomes",
+    ],
+    fitReasons: [
+      "ECARX product roadmap ownership, Go/No-Go release gates, Jira dashboards, and Volvo/Polestar cross-functional delivery",
+      "PathwayIQ and GlowCheck show hands-on product ownership across user journeys, frontend experience, APIs, and deployment",
+      "HelloRide adds Australian market research, stakeholder analysis, value proposition, and product positioning evidence",
+    ],
     strengths: ["Roadmap ownership", "Discovery + backlog", "Agile squad delivery", "Analytics + experiments"],
   },
   {
@@ -301,7 +313,17 @@ export const jobs: Job[] = [
     image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80",
     priority: 2,
     reason:
-      "JD keywords: application lifecycle, release and change management, vendor/MSP liaison, Azure or cloud APIs, relational databases, support, monitoring, and business stakeholder engagement. Nora maps through ECARX release readiness, system integration, Go/No-Go gates, Volvo/Polestar stakeholder coordination, Python/Linux automation, and AWS/API cloud delivery.",
+      "A technical product/application owner with release readiness, vendor coordination, and systems integration experience.",
+    roleRequirements: [
+      "Manage application lifecycle, release/change control, support, monitoring, and continuous improvement",
+      "Coordinate business stakeholders, IT teams, vendors, MSPs, cloud APIs, and relational data platforms",
+      "Keep enterprise applications reliable, secure, compliant, and aligned to service-line goals",
+    ],
+    fitReasons: [
+      "ECARX experience covers release readiness, system integration, Go/No-Go gates, issue triage, and delivery governance",
+      "Volvo/Polestar work proves stakeholder coordination across engineering, product, QA, and cross-border teams",
+      "Python/Linux automation plus AWS/API project work gives Nora credible cloud and technical troubleshooting language",
+    ],
     strengths: ["App lifecycle", "Release/change control", "Vendor + stakeholder liaison", "Cloud APIs + databases"],
   },
   {
@@ -317,7 +339,17 @@ export const jobs: Job[] = [
     image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80",
     priority: 3,
     reason:
-      "JD keywords: React, Next.js, .NET Core APIs, Azure Functions, Azure Service Bus, SQL Server, Docker, CI/CD, testable design, regression testing, and Agile delivery. Nora directly brings React/Next.js through PathwayIQ, serverless API and data pipelines through GlowCheck, Docker/Kubernetes evidence from cloud pose recognition, AWS Lambda/API Gateway, and a QA regression mindset.",
+      "A full-stack candidate with strong React/Next.js, cloud API, Docker/Kubernetes, and QA discipline, with .NET/Azure as the main ramp-up area.",
+    roleRequirements: [
+      "Build with React, Next.js, .NET Core APIs, Azure Functions, Service Bus, SQL Server, and CI/CD",
+      "Deliver testable, maintainable code using Docker, design patterns, regression tests, and Agile practices",
+      "Work across analysis, design, coding, testing, implementation, and production support",
+    ],
+    fitReasons: [
+      "PathwayIQ directly demonstrates React/Next.js product delivery, user flows, frontend architecture, and deployment iteration",
+      "GlowCheck demonstrates serverless APIs, AWS Lambda/API Gateway, Athena/S3 data work, and sub-200ms backend responses",
+      "Cloud pose recognition and QA experience add Docker/Kubernetes, performance testing, regression discipline, and defect analysis",
+    ],
     strengths: ["React + Next.js", "Serverless APIs", "Docker/Kubernetes", "Testing mindset"],
   },
   {
@@ -332,7 +364,17 @@ export const jobs: Job[] = [
     url: "https://careers.bupa.com.au/job/melbourne/senior-customer-and-product-insights-analyst/40796/38180991168",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
     reason:
-      "JD keywords: customer and product insights, digital/offline data, SQL or Python scripting, Power BI dashboards, journey optimisation, stakeholder storytelling, and Adobe or Google Analytics. Nora has Python/data-pipeline evidence from GlowCheck using S3, Lambda, and Athena, PathwayIQ labour-market datasets, Jira delivery dashboards, and product discovery work from HelloRide and FutureLab.",
+      "A product-minded analyst who can connect customer journey insight, data pipelines, dashboards, and stakeholder storytelling.",
+    roleRequirements: [
+      "Turn customer/product data into insights for journey optimisation, product decisions, and commercial impact",
+      "Use SQL or Python, Power BI dashboards, web analytics, and digital/offline data sources",
+      "Communicate findings clearly to product, digital, and business stakeholders in an Agile environment",
+    ],
+    fitReasons: [
+      "GlowCheck gives Python-style data pipeline evidence across S3, Lambda, Athena, APIs, and public health data",
+      "PathwayIQ uses labour-market datasets and data labels to support career decision journeys",
+      "Jira dashboards, HelloRide research, and FutureLab product discovery support stakeholder storytelling and product insight",
+    ],
     strengths: ["Python analytics", "Customer journey insight", "Dashboard storytelling", "Product decision support"],
   },
   {
@@ -347,7 +389,17 @@ export const jobs: Job[] = [
     url: "https://careers.bupa.com.au/job/melbourne/digital-data-specialist/40796/37487295232",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
     reason:
-      "JD keywords: digital data layer, tagging strategies, metrics tracking and trending, CRO/personalisation support, journey analytics, data integrations, backlog estimation, and data-driven decision culture. Nora's strongest evidence is GlowCheck's S3/Lambda/Athena pipeline, API data validation, sub-200ms serverless backend, PathwayIQ data labels, and QA discipline for consistent data capture.",
+      "A data-aware digital builder who can discuss data layers, tracking quality, API validation, and customer journey analytics.",
+    roleRequirements: [
+      "Maintain digital data layer, tagging strategies, metrics tracking, CRO/personalisation support, and journey analytics",
+      "Integrate digital and enterprise data, estimate data backlog work, and support reporting/insights teams",
+      "Promote consistent data capture, evidence-based decisions, and digital data best practices",
+    ],
+    fitReasons: [
+      "GlowCheck provides S3/Lambda/Athena pipeline evidence, API data validation, serverless backend delivery, and metrics thinking",
+      "PathwayIQ shows structured data labels, public dataset integration, and product-facing data presentation",
+      "QA background strengthens the case for reliable data capture, validation discipline, and regression-aware implementation",
+    ],
     strengths: ["Data layer thinking", "Athena/S3 pipeline", "Metrics validation", "Journey analytics"],
   },
   {
@@ -363,7 +415,17 @@ export const jobs: Job[] = [
     image: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80",
     priority: 4,
     reason:
-      "JD keywords: customer-first sales, needs-based product recommendations, member education, community relationships, health insurance value, Mandarin/Cantonese advantage, and in-store service. Nora can position Mandarin fluency, Box Hill community fit, HelloRide market and user research, finance accuracy, and stakeholder communication; it is best kept as a customer-facing backup role.",
+      "A customer-facing backup role where Nora's Mandarin, research mindset, and stakeholder communication can support Box Hill community service.",
+    roleRequirements: [
+      "Deliver customer-first sales, needs-based product recommendations, member education, and in-store service",
+      "Build community relationships and explain health insurance value clearly to diverse customers",
+      "Mandarin or Cantonese is advantageous for the Box Hill customer base",
+    ],
+    fitReasons: [
+      "Mandarin fluency and Box Hill community fit give Nora a practical advantage for customer conversations",
+      "HelloRide market/user research supports needs-based questioning, customer segmentation, and value communication",
+      "Finance internship accuracy and stakeholder communication experience support trustworthy, detail-oriented service",
+    ],
     strengths: ["Mandarin advantage", "Needs-based advice", "Community engagement", "Customer-first communication"],
   },
 ];

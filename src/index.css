@@ -48,14 +48,39 @@ nav {
   position: sticky;
   top: 0;
   z-index: 20;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto minmax(120px, 1fr);
   min-height: 64px;
   align-items: center;
-  justify-content: space-between;
+  gap: 20px;
   border-bottom: 1px solid #e5e5e5;
   background: rgba(250, 250, 250, 0.9);
   padding: 0 32px;
   backdrop-filter: blur(18px);
+}
+
+.site-brand {
+  max-width: 340px;
+  color: #111;
+  font-size: 16px;
+  line-height: 1.15;
+}
+
+.nav-links {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid #e1e1e1;
+  border-radius: 999px;
+  background: #fff;
+  padding: 5px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.nav-actions {
+  display: flex;
+  justify-content: flex-end;
 }
 
 nav button {
@@ -64,14 +89,21 @@ nav button {
   color: #404040;
   cursor: pointer;
   font-weight: 700;
-  margin-left: 18px;
+  margin-left: 0;
+  border-radius: 999px;
+  padding: 8px 14px;
+}
+
+.nav-links button:hover {
+  background: #f2f2f2;
+  color: #111;
 }
 
 nav .language-toggle {
   border: 1px solid #111;
   border-radius: 999px;
   color: #111;
-  padding: 6px 12px;
+  padding: 7px 13px;
 }
 
 .hero {
@@ -310,11 +342,11 @@ p {
 }
 
 .job-carousel {
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
-  scroll-behavior: smooth;
   scrollbar-width: none;
-  overscroll-behavior-x: contain;
+  --carousel-gap: 1.5rem;
+  padding-inline: max(24px, calc((100vw - 1280px) / 2));
 }
 
 .job-carousel::-webkit-scrollbar {
@@ -324,10 +356,14 @@ p {
 .job-carousel-track {
   display: flex;
   width: max-content;
-  gap: 1.5rem;
-  padding: 10px max(24px, calc((100vw - 1280px) / 2)) 18px;
-  animation: auto-carousel 34s linear infinite;
+  gap: var(--carousel-gap);
+  padding: 10px 0 18px;
+  animation: auto-carousel 46s linear infinite;
   will-change: transform;
+}
+
+.job-carousel-track.is-reverse {
+  animation-direction: reverse;
 }
 
 .job-carousel-track > button {
@@ -338,12 +374,8 @@ p {
   padding: 0;
 }
 
-.job-carousel-track.is-paused,
+.job-carousel:hover .job-carousel-track,
 .job-carousel-track:focus-within {
-  animation-play-state: paused;
-}
-
-.job-carousel:hover .job-carousel-track {
   animation-play-state: paused;
 }
 
@@ -390,7 +422,7 @@ p {
   color: #fff;
   cursor: pointer;
   font-weight: 800;
-  padding: 10px 16px;
+  padding: 9px 14px;
   transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 
@@ -438,6 +470,76 @@ p {
 
 .detail-carousel-control-right {
   right: -22px;
+}
+
+.role-detail-card {
+  align-items: stretch;
+  overflow: visible;
+}
+
+.role-detail-media {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.role-detail-image {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.role-download-panel {
+  align-self: end;
+}
+
+.role-detail-content {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  overflow: visible;
+  padding-right: 4px;
+}
+
+.role-detail-content h2 {
+  font-size: clamp(24px, 2.05vw, 34px);
+}
+
+.role-detail-content p,
+.role-detail-content li {
+  line-height: 1.28;
+}
+
+.role-match-box {
+  min-height: 0;
+  overflow: visible;
+}
+
+.match-row {
+  margin-inline: -6px;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 5px 6px;
+  transition: background 0.16s ease, box-shadow 0.16s ease, color 0.16s ease, transform 0.16s ease;
+}
+
+.match-row:hover,
+.match-row.is-active {
+  background: #f3f3f3;
+  box-shadow: inset 3px 0 0 #111;
+  color: #111;
+  transform: translateX(2px);
+}
+
+.match-row-blue:hover,
+.match-row-blue.is-active {
+  background: #eef7fc;
+  box-shadow: inset 3px 0 0 #0086c9;
 }
 
 .job-detail-dots {
@@ -631,13 +733,18 @@ p {
     transform: translateX(0);
   }
   to {
-    transform: translateX(calc(-50% - 0.75rem));
+    transform: translateX(calc(-50% - (var(--carousel-gap) / 2)));
   }
 }
 
 @media (max-width: 920px) {
   nav {
+    grid-template-columns: 1fr auto;
     padding: 0 20px;
+  }
+
+  .nav-links {
+    display: none;
   }
 
   .hero,
@@ -658,8 +765,17 @@ p {
 }
 
 @media (max-width: 620px) {
-  nav div {
-    display: none;
+  nav {
+    grid-template-columns: 1fr auto;
+  }
+
+  .site-brand {
+    max-width: 230px;
+    font-size: 14px;
+  }
+
+  .nav-actions {
+    display: flex;
   }
 
   .hero {
@@ -702,5 +818,23 @@ p {
 
   .detail-carousel-control-right {
     right: -6px;
+  }
+
+  .role-detail-card {
+    height: auto;
+    overflow: visible;
+  }
+
+  .role-download-panel {
+    margin-top: 0;
+  }
+
+  .role-detail-content {
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  .role-detail-image {
+    min-height: 260px;
   }
 }
