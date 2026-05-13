@@ -440,6 +440,41 @@ p {
   right: -22px;
 }
 
+.job-detail-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.job-detail-dot {
+  display: inline-flex;
+  height: 28px;
+  width: 28px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d4d4d4;
+  border-radius: 999px;
+  background: #fff;
+  color: #737373;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 900;
+  transition: background 0.2s, color 0.2s, transform 0.2s, width 0.2s;
+}
+
+.job-detail-dot:hover {
+  transform: translateY(-1px);
+}
+
+.job-detail-dot.is-active {
+  width: 42px;
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
+
 .priority-role-row {
   display: flex;
   align-items: center;
@@ -448,8 +483,26 @@ p {
   white-space: nowrap;
 }
 
+.priority-role-group {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
 .priority-role-label {
   flex: 0 0 auto;
+  color: #525252;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.priority-role-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
 }
 
 .priority-role-button {

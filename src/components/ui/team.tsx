@@ -37,6 +37,8 @@ const copy = {
     pdf: "下载简历",
     previousDetail: "查看上一个职位详情",
     priorityLabel: "优先投递职位：",
+    techRoles: "技术与产品方向",
+    customerServiceRoles: "客户服务方向",
     resumeTitle: "Nora Jin 简历",
     rightCards: "向右移动职位卡片",
     role: "职位",
@@ -44,6 +46,7 @@ const copy = {
     title: "Nora 希望获得内推的职位",
     url: "链接",
     visaLabel: "签证",
+    rolePosition: "职位",
   },
   en: {
     allZip: "Download All as ZIP",
@@ -61,10 +64,13 @@ const copy = {
     pdf: "Download Resume",
     keyPoints: "Why Nora fits this role",
     priorityLabel: "Top target roles:",
+    techRoles: "Tech and product",
+    customerServiceRoles: "Customer service",
     resumeTitle: "Nora Jin Resume",
     role: "Role",
     url: "URL",
     visaLabel: "Visa",
+    rolePosition: "Role",
   },
 } satisfies Record<Language, Record<string, string>>;
 
@@ -72,48 +78,48 @@ const jobZh: Record<string, { title: string; team: string; location: string; con
   j1: {
     contract: "永久全职",
     location: "墨尔本",
-    reason: "这是所有职位中匹配度最高的一个。Byte Squad 需要待办事项管理、敏捷团队协作和面向消费者/企业消费者的交付能力，这与 Nora 在 ECARX 的产品管理经历以及 PathwayIQ 产品负责经验高度契合。",
-    strengths: ["直接产品管理经验", "待办事项管理", "敏捷团队协作", "项目管理与人工智能能力"],
+    reason: "JD 关键词包括数字产品路线图、用户发现、预约路径、优先级 backlog、敏捷小队交付、数据分析和实验。Nora 的匹配证据包括 ECARX 产品路线图、Go/No-Go 发布门、Jira 仪表盘、Volvo/Polestar 跨职能交付，以及 PathwayIQ/GlowCheck 产品搭建和 HelloRide 澳洲市场研究。",
+    strengths: ["产品路线图", "用户发现与 Backlog", "敏捷小队交付", "数据分析与实验"],
     team: "Byte Squad / Bupa 牙科",
     title: "数字产品经理",
   },
   j2: {
     contract: "永久全职",
     location: "墨尔本",
-    reason: "应用生命周期管理、供应商协调和 Azure API 工作都属于 Nora 的技术产品管理优势。她在 Volvo/Polestar 项目和中国工程团队协作中的经验可以迁移到这个岗位。",
-    strengths: ["应用生命周期", "供应商协调", "上线决策", "技术产品管理"],
+    reason: "JD 关键词包括应用生命周期、发布与变更管理、供应商/MSP 沟通、Azure 或云端 API、关系型数据库、应用支持、监控和业务方沟通。Nora 的匹配证据包括 ECARX 发布准备、系统集成、Go/No-Go 上线门、Volvo/Polestar 利益相关方协调、Python/Linux 自动化，以及 AWS/API 云平台交付。",
+    strengths: ["应用生命周期", "发布与变更管理", "供应商与业务沟通", "云 API 与数据库"],
     team: "视光与听力应用",
     title: "技术应用负责人 - 视光与听力",
   },
   j3: {
     contract: "一年固定期限",
     location: "墨尔本",
-    reason: "Nora 可以直接展示 Next.js、React、Docker 和 Kubernetes 经验。主要差距是 .NET Core，但她的 AWS Lambda 经验可以作为理解 Azure Functions 架构的桥梁。",
-    strengths: ["前端框架", "界面开发", "容器与编排", "云函数"],
+    reason: "JD 关键词包括 React、Next.js、.NET Core API、Azure Functions、Azure Service Bus、SQL Server、Docker、CI/CD、可测试设计、回归测试和敏捷交付。Nora 可以用 PathwayIQ 证明 React/Next.js，用 GlowCheck 证明 serverless API 和数据管道，用云端姿态识别项目证明 Docker/Kubernetes，并用 QA 经历证明回归测试思维。",
+    strengths: ["React 与 Next.js", "Serverless API", "Docker/Kubernetes", "测试思维"],
     team: "数字工程",
     title: "全栈软件工程师",
   },
   j4: {
     contract: "永久全职",
     location: "墨尔本",
-    reason: "这个职位与数字产品经理同属 Blua 方向。它需要高级 SQL、Power BI、Adobe Analytics 和五年以上分析经验，因此更适合作为辅助投递，而不是主投职位。",
-    strengths: ["数据分析", "数据管道", "产品洞察", "辅助投递"],
+    reason: "JD 关键词包括客户与产品洞察、线上/线下数据、SQL 或 Python 脚本、Power BI 仪表盘、用户旅程优化、利益相关方 storytelling，以及 Adobe 或 Google Analytics。Nora 的证据包括 GlowCheck 的 S3/Lambda/Athena 数据管道、PathwayIQ 劳动力市场数据集、Jira 交付仪表盘，以及 HelloRide/FutureLab 的产品发现经历。",
+    strengths: ["Python 分析", "用户旅程洞察", "仪表盘表达", "产品决策支持"],
     team: "Blua / 产品洞察",
     title: "高级客户与产品洞察分析师",
   },
   j5: {
     contract: "固定期限",
     location: "墨尔本",
-    reason: "如果职位重点偏 Adobe Analytics 或 Tealium，需要谨慎；如果重点是数据管道或数据工程，Nora 的 Athena、S3 和公共数据集成经验就是有力证据。",
-    strengths: ["数据查询", "数据管道", "数据集成", "先核对职位描述"],
+    reason: "JD 关键词包括数字数据层、tagging 策略、指标追踪与趋势、CRO/个性化支持、用户旅程分析、数据集成、backlog 估算，以及数据驱动决策文化。Nora 最强的证据是 GlowCheck 的 S3/Lambda/Athena 数据管道、API 数据校验、低于 200ms 的 serverless 后端、PathwayIQ 数据标签，以及 QA 背景带来的稳定数据采集意识。",
+    strengths: ["数据层思维", "Athena/S3 管道", "指标校验", "旅程分析"],
     team: "数字数据",
     title: "数字数据专员",
   },
   jcs1: {
     contract: "永久全职",
     location: "博士山",
-    reason: "这是面向门店的健康保险销售与客户留存岗位，更适合作为备选。Nora 流利的普通话在博士山华人社区会是真实优势。",
-    strengths: ["备选职位", "普通话流利", "客户价值", "博士山"],
+    reason: "JD 关键词包括客户优先销售、基于需求的产品推荐、会员教育、社区关系、健康保险价值、普通话/粤语优势和门店服务。Nora 可以突出普通话、博士山社区匹配、HelloRide 市场与用户研究、财务准确性，以及利益相关方沟通；这个职位更适合作为客户服务方向的备选。",
+    strengths: ["普通话优势", "需求式推荐", "社区沟通", "客户优先沟通"],
     team: "零售健康保险",
     title: "客户价值专员 - 博士山",
   },
@@ -134,10 +140,13 @@ export default function ReferralRoles({ jobs, language, profile }: ReferralRoles
   const [selectedJob, setSelectedJob] = useState<Job>(jobs[0]);
   const [isManuallyPaused, setIsManuallyPaused] = useState(false);
   const t = copy[language];
-  const topJobs = jobs
-    .filter((job) => job.priority)
-    .sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99))
-    .slice(0, 4);
+  const recommendedTechJobs = ["j1", "j2", "j3", "j4", "j5"]
+    .map((id) => jobs.find((job) => job.id === id))
+    .filter((job): job is Job => Boolean(job));
+  const recommendedCustomerJobs = ["jcs1"]
+    .map((id) => jobs.find((job) => job.id === id))
+    .filter((job): job is Job => Boolean(job));
+  const selectedJobIndex = Math.max(0, jobs.findIndex((job) => job.id === selectedJob.id));
 
   function moveCarousel(direction: "left" | "right") {
     const rail = railRef.current;
@@ -220,16 +229,21 @@ endstream endobj`,
     URL.revokeObjectURL(link.href);
   }
 
-  async function downloadRoleZip(job: Job) {
+  async function downloadAllRolesZip() {
     const zip = new JSZip();
-    const roleSlug = safeFilePart(job.title);
-    zip.file(`nora-${roleSlug}-resume.pdf`, createRolePdfBlob(job, "resume"));
-    zip.file(`nora-${roleSlug}-cover-letter.pdf`, createRolePdfBlob(job, "cover-letter"));
+
+    jobs.forEach((job) => {
+      const local = localJob(job, language);
+      const roleSlug = safeFilePart(local.title);
+      const folder = zip.folder(`${job.jobNumber.replace("#", "")}-${roleSlug}`);
+      folder?.file(`nora-${roleSlug}-resume.pdf`, createRolePdfBlob(job, "resume"));
+      folder?.file(`nora-${roleSlug}-cover-letter.pdf`, createRolePdfBlob(job, "cover-letter"));
+    });
 
     const blob = await zip.generateAsync({ type: "blob" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = `nora-${roleSlug}-application-pack.zip`;
+    link.download = "nora-all-bupa-application-packs.zip";
     link.click();
     URL.revokeObjectURL(link.href);
   }
@@ -411,7 +425,7 @@ endstream endobj`,
                     <Download className="h-4 w-4" />
                     {t.coverLetter}
                   </button>
-                  <button className="download-action download-action-outline" onClick={() => void downloadRoleZip(selectedJob)} type="button">
+                  <button className="download-action download-action-outline" onClick={() => void downloadAllRolesZip()} type="button">
                     <Download className="h-4 w-4" />
                     {t.allZip}
                   </button>
@@ -421,27 +435,70 @@ endstream endobj`,
                 })()}
               </div>
             </div>
+            <div className="job-detail-dots" aria-label="Role position">
+              {jobs.map((job, index) => {
+                const isActive = index === selectedJobIndex;
+                const local = localJob(job, language);
+
+                return (
+                  <button
+                    aria-label={`${t.rolePosition} ${index + 1}: ${local.title}`}
+                    aria-current={isActive ? "step" : undefined}
+                    className={`job-detail-dot ${isActive ? "is-active" : ""}`}
+                    key={job.id}
+                    onClick={() => showJobDetail(job)}
+                    title={`${index + 1}. ${local.title}`}
+                    type="button"
+                  >
+                    <span>{index + 1}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        <div className="mx-auto mt-20 max-w-3xl px-6 text-center lg:px-0">
-          <div className="priority-role-row mb-8 text-lg font-medium leading-relaxed text-neutral-900 md:text-xl">
-            <span className="priority-role-label">{t.priorityLabel}</span>
-            {topJobs.map((rawJob, index) => {
-              const job = localJob(rawJob, language);
+        <div className="mx-auto mt-20 max-w-5xl px-6 text-center lg:px-0">
+          <div className="mb-8 grid gap-5 text-neutral-900">
+            <h3 className="text-2xl font-semibold">{t.priorityLabel}</h3>
+            <div className="priority-role-group">
+              <span className="priority-role-label">{t.techRoles}</span>
+              <div className="priority-role-buttons">
+                {recommendedTechJobs.map((rawJob, index) => {
+                  const job = localJob(rawJob, language);
 
-              return (
-              <button
-                className="priority-role-button"
-                key={job.id}
-                onClick={() => showJobDetail(rawJob)}
-                type="button"
-              >
-                {index + 1}.{" "}
-                {job.title}
-              </button>
-              );
-            })}
+                  return (
+                    <button
+                      className="priority-role-button"
+                      key={job.id}
+                      onClick={() => showJobDetail(rawJob)}
+                      type="button"
+                    >
+                      {index + 1}. {job.title}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="priority-role-group">
+              <span className="priority-role-label">{t.customerServiceRoles}</span>
+              <div className="priority-role-buttons">
+                {recommendedCustomerJobs.map((rawJob, index) => {
+                  const job = localJob(rawJob, language);
+
+                  return (
+                    <button
+                      className="priority-role-button"
+                      key={job.id}
+                      onClick={() => showJobDetail(rawJob)}
+                      type="button"
+                    >
+                      {index + 1}. {job.title}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
           <div className="flex flex-col items-center gap-3">

@@ -41,6 +41,11 @@ export type CapabilityItem = {
   group?: string;
   detailTitle?: string;
   details?: string[];
+  evidenceTranslation?: {
+    title: string;
+    body: string[];
+    note?: string;
+  };
 };
 
 export const profile: Profile = {
@@ -70,7 +75,7 @@ export const technicalTimeline: CapabilityItem[] = [
     title: "PathwayIQ",
     category: "PM + Full-Stack",
     period: "Apr 2026 - Present",
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80",
+    image: "/assets/projects/pathwayiq.png",
     summary:
       "A production-oriented Next.js / React product project covering user journeys, frontend experience, deployment iteration, and product positioning. It is Nora's strongest code plus product ownership case study.",
     points: ["Next.js", "React", "Product ownership", "Live site"],
@@ -82,7 +87,7 @@ export const technicalTimeline: CapabilityItem[] = [
     title: "GlowCheck / UV Aware",
     category: "Serverless Data",
     period: "2026",
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+    image: "/assets/projects/glowcheck-uv-aware.png",
     summary:
       "A serverless UV-aware sun safety platform using AWS Lambda, S3, Athena, and Node.js to build a data analytics pipeline with sub-200ms responses. Access password: 1111.",
     points: ["AWS Lambda", "S3", "Athena", "Node.js"],
@@ -94,7 +99,7 @@ export const technicalTimeline: CapabilityItem[] = [
     title: "StudyCouch",
     category: "Full-Stack",
     period: "2026",
-    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80",
+    image: "/assets/projects/studycouch.png",
     summary:
       "A full-stack learning and collaboration product that demonstrates Nora's ability to structure user flows, information architecture, and frontend/backend feature delivery.",
     points: ["Full-stack", "UX flow", "Data model", "Collaboration"],
@@ -175,6 +180,17 @@ export const managementTimeline: CapabilityItem[] = [
     points: ["Technical PM", "Release readiness", "Stakeholder management", "Python automation"],
     group: "China-Sweden automotive delivery experience",
     detailTitle: "Senior Product Development Engineer | System Integration & Delivery | ECARX",
+    evidenceTranslation: {
+      title: "Employment Termination Certificate | ECARX",
+      body: [
+        "This certificate confirms that Nuo Jin joined ECARX on 21 June 2023.",
+        "Her latest employment contract covered the period from 21 June 2023 to 30 June 2026.",
+        "Her employment relationship with the company was terminated on 9 April 2024.",
+        "Before leaving, she worked in the Testing Center department as a Senior Product Development Engineer.",
+        "The certificate was issued by ECARX (Hubei) Technology Co., Ltd. on 29 April 2024.",
+      ],
+      note: "Translated from the original Chinese certificate for readability. The original image remains the source document.",
+    },
     details: [
       "Jun 2023 - Jun 2024 · 1 yr 1 mo · China · On-site",
       "Contributed to end-to-end delivery of automotive infotainment systems for Volvo and Polestar at ECARX.",
@@ -198,6 +214,18 @@ export const managementTimeline: CapabilityItem[] = [
     points: ["System testing", "CAN/LIN", "CANoe", "Python automation"],
     group: "China-Sweden automotive delivery experience",
     detailTitle: "Certificate of Termination of Employment | iSoftStone",
+    evidenceTranslation: {
+      title: "Termination of Employment Relationship Certificate | iSoftStone",
+      body: [
+        "This certificate confirms that Nuo Jin signed an employment contract with iSoftStone Information Technology (Group) Co., Ltd. on 29 April 2022.",
+        "Her valid employment contract period was from 1 August 2022 to 31 July 2025.",
+        "Before leaving, her position was Software Engineer.",
+        "The employment relationship with iSoftStone Wuhan Branch was terminated on 19 June 2023.",
+        "Her service period with iSoftStone was 13.7 months.",
+        "From the date of termination, the company had no obligation to pay non-compete compensation, and the employee had no non-compete obligations.",
+      ],
+      note: "Translated from the original Chinese certificate for readability. The original image remains the source document.",
+    },
     details: [
       "May 2022 - May 2023 · 1 yr 1 mo · China · On-site",
       "Designed and executed system-level and integration test cases for enterprise software and automotive systems, achieving near-100% coverage.",
@@ -221,6 +249,17 @@ export const managementTimeline: CapabilityItem[] = [
     points: ["Finance accuracy", "Reconciliation", "Archive", "Documentation"],
     group: "China local foundation experience",
     detailTitle: "Internship Certificate - Dongfeng Motor Corporation",
+    evidenceTranslation: {
+      title: "Internship Certificate | Dongfeng Motor Corporation",
+      body: [
+        "This certificate confirms that Nuo Jin, a student majoring in Economics and Finance at Changchun Normal University, completed an internship at Dongfeng Motor Corporation Passenger Vehicle Company.",
+        "The internship period was from 4 August 2021 to 1 October 2021.",
+        "Her internship role was Accounting Assistant.",
+        "Her main responsibilities included account verification, document receiving and dispatching, and archive data management.",
+        "During the internship, she studied carefully, reflected actively, applied university knowledge to practical work, followed company systems, respected internship staff, and maintained good relationships with colleagues.",
+      ],
+      note: "Translated from the original Chinese certificate for readability. The original image remains the source document.",
+    },
     details: [
       "Aug 2021 - Oct 2021 · 3 mos · China · On-site",
       "Supported day-to-day accounting operations in the Finance Department of Dongfeng Motor Corporation.",
@@ -246,8 +285,8 @@ export const jobs: Job[] = [
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80",
     priority: 1,
     reason:
-      "The strongest match across the role set. Byte Squad needs backlog management, Agile squad leadership, and B2C/B2B2C delivery, which aligns with Nora's ECARX product management experience and PathwayIQ product ownership.",
-    strengths: ["Direct PM experience", "Backlog ownership", "Agile squad", "PMP + AWS AI"],
+      "JD keywords: digital product roadmap, discovery, booking pathways, prioritised backlog, squad delivery, analytics, and experimentation. Nora matches through ECARX roadmap ownership, Go/No-Go release gates, Jira dashboards, Volvo/Polestar cross-functional delivery, PathwayIQ and GlowCheck product builds, and HelloRide Australian market research.",
+    strengths: ["Roadmap ownership", "Discovery + backlog", "Agile squad delivery", "Analytics + experiments"],
   },
   {
     id: "j2",
@@ -262,8 +301,8 @@ export const jobs: Job[] = [
     image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80",
     priority: 2,
     reason:
-      "Application lifecycle management, vendor coordination, and Azure API work sit inside Nora's technical product management strengths. Her Volvo/Polestar and China engineering collaboration experience is transferable.",
-    strengths: ["App lifecycle", "Vendor coordination", "Go/No-Go gating", "Technical PM"],
+      "JD keywords: application lifecycle, release and change management, vendor/MSP liaison, Azure or cloud APIs, relational databases, support, monitoring, and business stakeholder engagement. Nora maps through ECARX release readiness, system integration, Go/No-Go gates, Volvo/Polestar stakeholder coordination, Python/Linux automation, and AWS/API cloud delivery.",
+    strengths: ["App lifecycle", "Release/change control", "Vendor + stakeholder liaison", "Cloud APIs + databases"],
   },
   {
     id: "j3",
@@ -278,8 +317,8 @@ export const jobs: Job[] = [
     image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80",
     priority: 3,
     reason:
-      "Nora can directly demonstrate Next.js, React, Docker, and Kubernetes experience. The main gap is .NET Core, but her AWS Lambda experience gives her a strong architectural bridge to Azure Functions.",
-    strengths: ["Next.js", "React", "Docker/K8s", "AWS Lambda"],
+      "JD keywords: React, Next.js, .NET Core APIs, Azure Functions, Azure Service Bus, SQL Server, Docker, CI/CD, testable design, regression testing, and Agile delivery. Nora directly brings React/Next.js through PathwayIQ, serverless API and data pipelines through GlowCheck, Docker/Kubernetes evidence from cloud pose recognition, AWS Lambda/API Gateway, and a QA regression mindset.",
+    strengths: ["React + Next.js", "Serverless APIs", "Docker/Kubernetes", "Testing mindset"],
   },
   {
     id: "j4",
@@ -293,8 +332,8 @@ export const jobs: Job[] = [
     url: "https://careers.bupa.com.au/job/melbourne/senior-customer-and-product-insights-analyst/40796/38180991168",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
     reason:
-      "This sits close to the Digital Product Manager direction within Blua. It requires advanced SQL, Power BI, Adobe Analytics, and 5+ years of analytics experience, so it works best as a supporting application rather than the primary target.",
-    strengths: ["Python", "Athena pipeline", "Product insight", "Supplement role"],
+      "JD keywords: customer and product insights, digital/offline data, SQL or Python scripting, Power BI dashboards, journey optimisation, stakeholder storytelling, and Adobe or Google Analytics. Nora has Python/data-pipeline evidence from GlowCheck using S3, Lambda, and Athena, PathwayIQ labour-market datasets, Jira delivery dashboards, and product discovery work from HelloRide and FutureLab.",
+    strengths: ["Python analytics", "Customer journey insight", "Dashboard storytelling", "Product decision support"],
   },
   {
     id: "j5",
@@ -308,8 +347,8 @@ export const jobs: Job[] = [
     url: "https://careers.bupa.com.au/job/melbourne/digital-data-specialist/40796/37487295232",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
     reason:
-      "If the role leans heavily toward Adobe Analytics or Tealium, it should be approached carefully. If the focus is data pipelines or engineering, Nora's Athena, S3, and public dataset integration work becomes strong evidence.",
-    strengths: ["Athena", "S3 pipeline", "Data integration", "Check JD first"],
+      "JD keywords: digital data layer, tagging strategies, metrics tracking and trending, CRO/personalisation support, journey analytics, data integrations, backlog estimation, and data-driven decision culture. Nora's strongest evidence is GlowCheck's S3/Lambda/Athena pipeline, API data validation, sub-200ms serverless backend, PathwayIQ data labels, and QA discipline for consistent data capture.",
+    strengths: ["Data layer thinking", "Athena/S3 pipeline", "Metrics validation", "Journey analytics"],
   },
   {
     id: "jcs1",
@@ -324,7 +363,7 @@ export const jobs: Job[] = [
     image: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80",
     priority: 4,
     reason:
-      "This is a face-to-face retail health insurance sales and retention role, best kept as a backup option. Nora's fluent Mandarin would be a real advantage in the Box Hill Chinese-Australian community.",
-    strengths: ["Backup option", "Mandarin fluency", "Customer value", "Box Hill"],
+      "JD keywords: customer-first sales, needs-based product recommendations, member education, community relationships, health insurance value, Mandarin/Cantonese advantage, and in-store service. Nora can position Mandarin fluency, Box Hill community fit, HelloRide market and user research, finance accuracy, and stakeholder communication; it is best kept as a customer-facing backup role.",
+    strengths: ["Mandarin advantage", "Needs-based advice", "Community engagement", "Customer-first communication"],
   },
 ];

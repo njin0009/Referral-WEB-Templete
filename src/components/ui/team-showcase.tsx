@@ -132,6 +132,7 @@ function localMember(member: CapabilityItem, language: Language) {
 export default function TeamShowcase({ language, members }: TeamShowcaseProps) {
   const [activeId, setActiveId] = useState(members[0]?.id ?? "");
   const [isGlobeLocked, setIsGlobeLocked] = useState(false);
+  const [isEvidenceTranslated, setIsEvidenceTranslated] = useState(false);
   const unlockTimerRef = useRef<number | null>(null);
   const t = copy[language];
 
@@ -141,7 +142,9 @@ export default function TeamShowcase({ language, members }: TeamShowcaseProps) {
 
   const activeRawMember = members.find((member) => member.id === activeId) ?? members[0];
   const activeMember = localMember(activeRawMember, language);
-  const activeIndex = members.findIndex((member) => member.id === activeRawMember.id);
+  const timelineMembers = [...members].reverse();
+  const activeIndex = timelineMembers.findIndex((member) => member.id === activeRawMember.id);
+  const evidenceTranslation = activeRawMember.evidenceTranslation;
 
   useEffect(() => {
     return () => {
@@ -153,6 +156,7 @@ export default function TeamShowcase({ language, members }: TeamShowcaseProps) {
 
   function selectMember(id: string, lockGlobe = true) {
     setActiveId(id);
+    setIsEvidenceTranslated(false);
 
     if (!lockGlobe) {
       return;
@@ -172,9 +176,9 @@ export default function TeamShowcase({ language, members }: TeamShowcaseProps) {
     const currentIndex = activeIndex === -1 ? 0 : activeIndex;
     const nextIndex =
       direction === "previous"
-        ? (currentIndex - 1 + members.length) % members.length
-        : (currentIndex + 1) % members.length;
-    selectMember(members[nextIndex].id);
+        ? (currentIndex - 1 + timelineMembers.length) % timelineMembers.length
+        : (currentIndex + 1) % timelineMembers.length;
+    selectMember(timelineMembers[nextIndex].id);
   }
 
   const place = {
@@ -216,7 +220,7 @@ export default function TeamShowcase({ language, members }: TeamShowcaseProps) {
       type: member.workType ?? "internship",
     }));
   });
-  const timelineItems: TimelineItem[] = members.map((rawMember, index) => {
+  const timelineItems: TimelineItem[] = timelineMembers.map((rawMember, index) => {
     const member = localMember(rawMember, language);
     const isInternship = (member.workType ?? "internship") === "internship";
     return {
@@ -278,6 +282,21 @@ export default function TeamShowcase({ language, members }: TeamShowcaseProps) {
         </div>
 
         <div className="relative flex min-h-[520px] items-center justify-center overflow-hidden rounded-2xl border border-border bg-muted p-4 shadow-sm">
+          {evidenceTranslation ? (
+            <button
+              className="absolute right-4 top-4 z-20 rounded-full border border-neutral-900 bg-white/95 px-4 py-2 text-sm font-bold text-neutral-950 shadow-lg transition hover:bg-neutral-950 hover:text-white"
+              onClick={() => setIsEvidenceTranslated((current) => !current)}
+              type="button"
+            >
+              {isEvidenceTranslated
+                ? language === "zh"
+                  ? "查看原图"
+                  : "Show original"
+                : language === "zh"
+                  ? "一键翻译为英文"
+                  : "Translate image to English"}
+            </button>
+          ) : null}
           <button
             aria-label="Show previous evidence"
             className="absolute left-4 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-900 bg-white/90 text-neutral-950 shadow-lg transition hover:bg-neutral-950 hover:text-white"
@@ -286,7 +305,26 @@ export default function TeamShowcase({ language, members }: TeamShowcaseProps) {
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
-          <img alt={activeMember.title} className="h-full max-h-[640px] w-full object-contain" src={activeRawMember.image} />
+          {isEvidenceTranslated && evidenceTranslation ? (
+            <div className="max-h-[640px] w-full overflow-y-auto rounded-xl bg-white p-8 text-left shadow-inner">
+              <p className="mb-3 text-xs font-bold uppercase tracking-wider text-neutral-500">English translation</p>
+              <h4 className="text-2xl font-bold leading-tight text-neutral-950">{evidenceTranslation.title}</h4>
+              <div className="mt-6 space-y-4">
+                {evidenceTranslation.body.map((line) => (
+                  <p className="border-l-4 border-neutral-900 pl-4 text-sm leading-relaxed text-neutral-700" key={line}>
+                    {line}
+                  </p>
+                ))}
+              </div>
+              {evidenceTranslation.note ? (
+                <p className="mt-6 rounded-lg bg-neutral-100 p-4 text-xs font-semibold leading-relaxed text-neutral-600">
+                  {evidenceTranslation.note}
+                </p>
+              ) : null}
+            </div>
+          ) : (
+            <img alt={activeMember.title} className="h-full max-h-[640px] w-full object-contain" src={activeRawMember.image} />
+          )}
           <button
             aria-label="Show next evidence"
             className="absolute right-4 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-900 bg-white/90 text-neutral-950 shadow-lg transition hover:bg-neutral-950 hover:text-white"
