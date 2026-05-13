@@ -16,27 +16,27 @@ const copy = {
   zh: {
     techEyebrow: "技术能力",
     techTitle: "技术能力 · 代码项目",
-    techDescription: "Nora 能独立搭建产品、编写代码、设计云端数据管道并部署上线。点击卡片按钮可以打开对应项目。",
+    techDescription: "Nora 具备从产品想法到可访问项目的交付能力，覆盖前端体验、云端数据管道、接口集成和上线迭代。",
     managementEyebrow: "管理能力",
     managementTitle: "管理能力 · 国际工作经历",
     managementDescription:
       "这些经历展示 Nora 如何在澳洲本地项目、跨国远程团队和中国-瑞典车载交付中推动产品沟通、优先级判断、发布准备和利益相关方协作。",
     profileKicker: "个人资料",
-    profileTitleSuffix: "的能力地图",
-    profileLead: "这部分帮助内推人快速理解 Nora 的两条主线：能动手搭建产品，也能在跨团队、跨地区环境中推动交付。",
+    profileTitleSuffix: "的候选人能力概览",
+    profileLead: "Nora 的候选人价值集中在两条主线：能动手搭建数字产品，也能在跨团队、跨地区环境中推动产品交付。",
     view: "查看",
   },
   en: {
     techEyebrow: "Technical Capability",
     techTitle: "Technical Capability · Code Projects",
-    techDescription: "Nora can build products, write code, design cloud data pipelines, and deploy live projects. Use the card actions to open each project.",
+    techDescription: "Nora brings hands-on delivery across frontend experience, cloud data pipelines, API integration, and live product iteration.",
     managementEyebrow: "Management Capability",
     managementTitle: "Management Capability · International Experience",
     managementDescription:
       "A practical view of Nora's product and delivery experience across Australian local projects, Australia/Malaysia/UK remote teamwork, and China-Sweden automotive delivery.",
     profileKicker: "Profile",
-    profileTitleSuffix: "'s Capability Map",
-    profileLead: "This section gives referrers a quick view of Nora's two strongest narratives: hands-on product building and international product delivery.",
+    profileTitleSuffix: " · Candidate Fit Overview",
+    profileLead: "Nora's strongest value sits at the intersection of hands-on digital product building and international product delivery.",
     view: "View",
   },
 } satisfies Record<Language, Record<string, string>>;

@@ -349,10 +349,26 @@ export default function TeamShowcase({ focusId, language, members }: TeamShowcas
 
       <article
         className={cn(
-          "rounded-2xl border border-border bg-background p-6 shadow-sm",
+          "relative rounded-2xl border border-border bg-background p-6 shadow-sm",
           focusId === activeRawMember.id && "evidence-highlight",
         )}
       >
+        <button
+          aria-label="Show previous experience details"
+          className="experience-detail-control experience-detail-control-left"
+          onClick={() => stepMember("previous")}
+          type="button"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <button
+          aria-label="Show next experience details"
+          className="experience-detail-control experience-detail-control-right"
+          onClick={() => stepMember("next")}
+          type="button"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
         <div className="p-6">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
             {activeMember.group} · {activeMember.period}

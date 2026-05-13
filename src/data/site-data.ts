@@ -55,7 +55,7 @@ export const profile: Profile = {
   role: "Product-minded technologist for BUPA digital roles",
   location: "Melbourne, Australia",
   summary:
-    "A compact portfolio prototype for Nora's BUPA applications: product strategy, international delivery, engineering QA, and stakeholder communication in one maintainable site.",
+    "BUPA-relevant candidate profile across product strategy, international delivery, engineering QA, and stakeholder communication.",
   email: "nuojin01@gmail.com",
   visa: "Eligible to apply for the 485 post-study work visa after graduating in June.",
   highlights: [
@@ -79,7 +79,7 @@ export const technicalTimeline: CapabilityItem[] = [
     period: "Apr 2026 - Present",
     image: "/assets/projects/pathwayiq.png",
     summary:
-      "A production-oriented Next.js / React product project covering user journeys, frontend experience, deployment iteration, and product positioning. It is Nora's strongest code plus product ownership case study.",
+      "A Next.js / React product project covering user journeys, frontend experience, deployment iteration, and product positioning. Strong evidence for product ownership with hands-on technical delivery.",
     points: ["Next.js", "React", "Product ownership", "Live site"],
     link: "https://iteration3.pathwayiq.me/",
     status: "In development",
@@ -103,7 +103,7 @@ export const technicalTimeline: CapabilityItem[] = [
     period: "2026",
     image: "/assets/projects/studycouch.png",
     summary:
-      "A full-stack learning and collaboration product that demonstrates Nora's ability to structure user flows, information architecture, and frontend/backend feature delivery.",
+      "A full-stack learning and collaboration product with clear user flows, information architecture, and frontend/backend feature delivery.",
     points: ["Full-stack", "UX flow", "Data model", "Collaboration"],
     link: "https://rubystudycouch.pages.dev/",
     status: "In development",
@@ -115,7 +115,7 @@ export const technicalTimeline: CapabilityItem[] = [
     period: "2025",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
     summary:
-      "A cloud-based pose recognition project showing Docker, Kubernetes, and cloud deployment capability, supporting Nora's narrative for full-stack software engineering roles.",
+      "A cloud-based pose recognition project showing Docker, Kubernetes, computer vision, and cloud deployment capability for full-stack engineering roles.",
     points: ["Docker", "Kubernetes", "Cloud deployment", "Computer vision"],
     link: "https://github.com/njin0009",
   },
