@@ -23,6 +23,59 @@ type ReferralRolesProps = {
   profile: Profile;
 };
 
+type ApplicationFileSet = {
+  coverLetter: string;
+  coverLetterFilename: string;
+  resume: string;
+  resumeFilename: string;
+  zipFilename: string;
+};
+
+const applicationFiles: Record<string, ApplicationFileSet> = {
+  j1: {
+    coverLetter: "/assets/applications/digital-product-manager/cover-letter.pdf",
+    coverLetterFilename: "Nora_Jin_Digital_Product_Manager_CoverLetter_Bupa.pdf",
+    resume: "/assets/applications/digital-product-manager/resume.pdf",
+    resumeFilename: "Nora_Jin_PM_Digital_Product_Manager_Resume_Bupa.pdf",
+    zipFilename: "01_Digital_Product_Manager.zip",
+  },
+  j2: {
+    coverLetter: "/assets/applications/app-owner/cover-letter.pdf",
+    coverLetterFilename: "Nora_Jin_CoverLetter_Bupa_AppOwner.pdf",
+    resume: "/assets/applications/app-owner/resume.pdf",
+    resumeFilename: "Nora_Jin_Resume_Bupa_AppOwner.pdf",
+    zipFilename: "02_Technology_Application_Owner_Optical_And_Hearing.zip",
+  },
+  j3: {
+    coverLetter: "/assets/applications/full-stack-software-engineer/cover-letter.pdf",
+    coverLetterFilename: "Nora_Jin_CoverLetter_Bupa_FullStackSoftwareEngineer.pdf",
+    resume: "/assets/applications/full-stack-software-engineer/resume.pdf",
+    resumeFilename: "Nora_Jin_Resume_Bupa_FullStackSoftwareEngineer.pdf",
+    zipFilename: "03_Full_Stack_Software_Engineer.zip",
+  },
+  j4: {
+    coverLetter: "/assets/applications/senior-customer-product-insights/cover-letter.pdf",
+    coverLetterFilename: "Nora_Jin_CoverLetter_Bupa_SeniorCustomerAndProductInsightsAnalyst.pdf",
+    resume: "/assets/applications/senior-customer-product-insights/resume.pdf",
+    resumeFilename: "Nora_Jin_Resume_Bupa_SeniorCustomerAndProductInsightsAnalyst.pdf",
+    zipFilename: "04_Senior_Customer_And_Product_Insights_Analyst.zip",
+  },
+  j5: {
+    coverLetter: "/assets/applications/digital-data-specialist/cover-letter.pdf",
+    coverLetterFilename: "Nora_Jin_CoverLetter_Bupa_DigitalDataSpecialist.pdf",
+    resume: "/assets/applications/digital-data-specialist/resume.pdf",
+    resumeFilename: "Nora_Jin_Resume_Bupa_DigitalDataSpecialist.pdf",
+    zipFilename: "05_Digital_Data_Specialist.zip",
+  },
+  jcs1: {
+    coverLetter: "/assets/applications/customer-value-specialist/cover-letter.pdf",
+    coverLetterFilename: "Nora_Jin_CoverLetter_Bupa_CustomerValueSpecialist.pdf",
+    resume: "/assets/applications/customer-value-specialist/resume.pdf",
+    resumeFilename: "Nora_Jin_Resume_Bupa_CustomerValueSpecialist.pdf",
+    zipFilename: "06_Customer_Value_Specialist_Box_Hill.zip",
+  },
+};
+
 const copy = {
   zh: {
     allZip: "一键下载压缩包",
@@ -388,73 +441,82 @@ export default function ReferralRoles({ jobs, language, profile }: ReferralRoles
     showJobDetail(jobs[nextIndex], false);
   }
 
-  function safeFilePart(value: string) {
-    return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-  }
-
-  function createRolePdfBlob(job: Job, kind: "resume" | "cover-letter") {
-    const local = localJob(job, language);
-    const title = kind === "resume" ? t.resumeTitle : t.coverLetterTitle;
-    const pdf = [
-      "%PDF-1.4",
-      "1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj",
-      "2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj",
-      "3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >> endobj",
-      `4 0 obj << /Length 260 >> stream
-BT
-/F1 18 Tf
-72 720 Td
-(${title}) Tj
-/F1 11 Tf
-0 -32 Td
-(${t.role}: ${local.title.replace(/[()]/g, "")}) Tj
-0 -20 Td
-(${t.job}: ${job.jobNumber} | ${job.fit}% ${t.fit} | ${t.closeDate}: ${job.closeDate}) Tj
-0 -20 Td
-(${t.url}: ${job.url.replace(/[()]/g, "")}) Tj
-0 -28 Td
-(${t.keyPoints}: ${local.strengths.join(", ").replace(/[()]/g, "")}) Tj
-ET
-endstream endobj`,
-      "5 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj",
-      "xref",
-      "0 6",
-      "0000000000 65535 f ",
-      "trailer << /Root 1 0 R /Size 6 >>",
-      "startxref",
-      "0",
-      "%%EOF",
-    ].join("\n");
-    return new Blob([pdf], { type: "application/pdf" });
-  }
-
-  function downloadRolePdf(job: Job, kind: "resume" | "cover-letter") {
-    const filename = `nora-${safeFilePart(job.title)}-${kind}.pdf`;
-    const blob = createRolePdfBlob(job, kind);
+  function downloadBlob(blob: Blob, filename: string) {
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = filename;
+    document.body.appendChild(link);
     link.click();
+    link.remove();
     URL.revokeObjectURL(link.href);
   }
 
-  async function downloadAllRolesZip() {
-    const zip = new JSZip();
-
-    jobs.forEach((job) => {
-      const local = localJob(job, language);
-      const roleSlug = safeFilePart(local.title);
-      const folder = zip.folder(`${job.jobNumber.replace("#", "")}-${roleSlug}`);
-      folder?.file(`nora-${roleSlug}-resume.pdf`, createRolePdfBlob(job, "resume"));
-      folder?.file(`nora-${roleSlug}-cover-letter.pdf`, createRolePdfBlob(job, "cover-letter"));
-    });
-
-    const blob = await zip.generateAsync({ type: "blob" });
+  function downloadAsset(path: string, filename: string) {
     const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "nora-all-bupa-application-packs.zip";
+    link.href = path;
+    link.download = filename;
+    document.body.appendChild(link);
     link.click();
-    URL.revokeObjectURL(link.href);
+    link.remove();
+  }
+
+  async function fetchApplicationBlob(path: string) {
+    const response = await fetch(path);
+
+    if (!response.ok) {
+      throw new Error(`Unable to load application file: ${path}`);
+    }
+
+    return response.blob();
+  }
+
+  async function createRoleApplicationZip(files: ApplicationFileSet) {
+    const roleZip = new JSZip();
+    const [resumeBlob, coverLetterBlob] = await Promise.all([
+      fetchApplicationBlob(files.resume),
+      fetchApplicationBlob(files.coverLetter),
+    ]);
+
+    roleZip.file(files.resumeFilename, resumeBlob);
+    roleZip.file(files.coverLetterFilename, coverLetterBlob);
+
+    return roleZip.generateAsync({ type: "blob" });
+  }
+
+  function downloadRolePdf(job: Job, kind: "resume" | "cover-letter") {
+    const files = applicationFiles[job.id];
+
+    if (!files) return;
+
+    downloadAsset(
+      kind === "resume" ? files.resume : files.coverLetter,
+      kind === "resume" ? files.resumeFilename : files.coverLetterFilename,
+    );
+  }
+
+  async function downloadAllRolesZip() {
+    try {
+      const outerZip = new JSZip();
+
+      for (const job of jobs) {
+        const files = applicationFiles[job.id];
+
+        if (!files) continue;
+
+        const roleZipBlob = await createRoleApplicationZip(files);
+        outerZip.file(files.zipFilename, roleZipBlob);
+      }
+
+      const blob = await outerZip.generateAsync({ type: "blob" });
+      downloadBlob(blob, "Nora_Jin_Bupa_Application_Packs.zip");
+    } catch (error) {
+      console.error(error);
+      window.alert(
+        language === "zh"
+          ? "压缩包生成失败，请稍后重试或分别下载对应职位文件。"
+          : "The ZIP package could not be generated. Please try again or download each role file individually.",
+      );
+    }
   }
 
   return (
