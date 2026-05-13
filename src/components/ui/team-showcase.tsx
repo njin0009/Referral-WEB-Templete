@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import TimelineRail, { type TimelineItem } from "@/components/ui/timeline-rail";
 
 interface TeamShowcaseProps {
+  focusId?: string | null;
   language: Language;
   members: CapabilityItem[];
 }
@@ -129,7 +130,7 @@ function localMember(member: CapabilityItem, language: Language) {
   return language === "zh" && zh ? { ...member, ...zh } : member;
 }
 
-export default function TeamShowcase({ language, members }: TeamShowcaseProps) {
+export default function TeamShowcase({ focusId, language, members }: TeamShowcaseProps) {
   const [activeId, setActiveId] = useState(members[0]?.id ?? "");
   const [isGlobeLocked, setIsGlobeLocked] = useState(false);
   const [isEvidenceTranslated, setIsEvidenceTranslated] = useState(false);
@@ -153,6 +154,16 @@ export default function TeamShowcase({ language, members }: TeamShowcaseProps) {
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (!focusId || !members.some((member) => member.id === focusId)) {
+      return;
+    }
+
+    setActiveId(focusId);
+    setIsEvidenceTranslated(false);
+    setIsGlobeLocked(true);
+  }, [focusId, members]);
 
   function selectMember(id: string, lockGlobe = true) {
     setActiveId(id);
@@ -336,7 +347,12 @@ export default function TeamShowcase({ language, members }: TeamShowcaseProps) {
         </div>
       </div>
 
-      <article className="rounded-2xl border border-border bg-background p-6 shadow-sm">
+      <article
+        className={cn(
+          "rounded-2xl border border-border bg-background p-6 shadow-sm",
+          focusId === activeRawMember.id && "evidence-highlight",
+        )}
+      >
         <div className="p-6">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
             {activeMember.group} · {activeMember.period}

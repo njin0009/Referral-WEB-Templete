@@ -304,20 +304,50 @@ function renderHighlightedText(text: string, language: Language) {
   });
 }
 
-function getMatchCategory(jobId: string, index: number): "technical" | "management" {
-  const technicalMap: Record<string, number[]> = {
-    j2: [1],
-    j3: [0, 1, 2],
-    j4: [1],
-    j5: [0, 1, 2],
+function getMatchTarget(jobId: string, index: number): { type: "technical" | "management"; id: string } {
+  const targets: Record<string, Array<{ type: "technical" | "management"; id: string }>> = {
+    j1: [
+      { type: "management", id: "ecarx" },
+      { type: "technical", id: "pathwayiq" },
+      { type: "management", id: "helloride" },
+    ],
+    j2: [
+      { type: "management", id: "ecarx" },
+      { type: "management", id: "ecarx" },
+      { type: "technical", id: "glowcheck" },
+    ],
+    j3: [
+      { type: "technical", id: "pathwayiq" },
+      { type: "technical", id: "glowcheck" },
+      { type: "technical", id: "cloud-pose" },
+    ],
+    j4: [
+      { type: "technical", id: "glowcheck" },
+      { type: "technical", id: "pathwayiq" },
+      { type: "management", id: "helloride" },
+    ],
+    j5: [
+      { type: "technical", id: "glowcheck" },
+      { type: "technical", id: "pathwayiq" },
+      { type: "management", id: "isoftstone" },
+    ],
+    jcs1: [
+      { type: "management", id: "helloride" },
+      { type: "management", id: "helloride" },
+      { type: "management", id: "dongfeng" },
+    ],
   };
 
-  return technicalMap[jobId]?.includes(index) ? "technical" : "management";
+  return targets[jobId]?.[index] ?? { type: "management", id: "ecarx" };
 }
 
-function scrollToCapability(category: "technical" | "management") {
-  const targetId = category === "technical" ? "technical-capability" : "management-capability";
+function scrollToCapability(jobId: string, index: number) {
+  const target = getMatchTarget(jobId, index);
+  const targetId = target.type === "technical" ? "technical-capability" : "management-capability";
   document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.setTimeout(() => {
+    window.dispatchEvent(new CustomEvent("nora-evidence-focus", { detail: target }));
+  }, 450);
 }
 
 export default function ReferralRoles({ jobs, language, profile }: ReferralRolesProps) {
@@ -614,11 +644,11 @@ endstream endobj`,
                         <li
                           className={`match-row flex gap-2.5 text-[13px] leading-snug text-neutral-700 md:text-sm ${activeMatchIndex === index ? "is-active" : ""}`}
                           key={item}
-                          onClick={() => scrollToCapability(getMatchCategory(selectedJob.id, index))}
+                          onClick={() => scrollToCapability(selectedJob.id, index)}
                           onKeyDown={(event) => {
                             if (event.key === "Enter" || event.key === " ") {
                               event.preventDefault();
-                              scrollToCapability(getMatchCategory(selectedJob.id, index));
+                              scrollToCapability(selectedJob.id, index);
                             }
                           }}
                           onMouseEnter={() => setActiveMatchIndex(index)}
@@ -639,11 +669,11 @@ endstream endobj`,
                         <li
                           className={`match-row match-row-blue flex gap-2.5 text-[13px] leading-snug text-neutral-700 md:text-sm ${activeMatchIndex === index ? "is-active" : ""}`}
                           key={item}
-                          onClick={() => scrollToCapability(getMatchCategory(selectedJob.id, index))}
+                          onClick={() => scrollToCapability(selectedJob.id, index)}
                           onKeyDown={(event) => {
                             if (event.key === "Enter" || event.key === " ") {
                               event.preventDefault();
-                              scrollToCapability(getMatchCategory(selectedJob.id, index));
+                              scrollToCapability(selectedJob.id, index);
                             }
                           }}
                           onMouseEnter={() => setActiveMatchIndex(index)}
@@ -656,16 +686,6 @@ endstream endobj`,
                         </li>
                       ))}
                     </ul>
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-neutral-500">{t.keyPoints}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {selected.strengths.map((point) => (
-                      <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-neutral-800 ring-1 ring-neutral-200 md:text-sm" key={point}>
-                        {point}
-                      </span>
-                    ))}
                   </div>
                 </div>
                     </>

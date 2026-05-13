@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import type { CapabilityItem, Profile } from "@/data/site-data";
 import type { Language } from "@/App";
 import { LocationCard } from "@/components/ui/card-17";
@@ -18,10 +20,10 @@ const copy = {
     managementEyebrow: "管理能力",
     managementTitle: "管理能力 · 国际工作经历",
     managementDescription:
-      "基于 LinkedIn 经历和原始页面重新整理：澳洲本地经验、澳洲/马来西亚/英国远程协作、中国-瑞典车载交付，以及早期财务实习体现的严谨性。",
+      "这些经历展示 Nora 如何在澳洲本地项目、跨国远程团队和中国-瑞典车载交付中推动产品沟通、优先级判断、发布准备和利益相关方协作。",
     profileKicker: "个人资料",
     profileTitleSuffix: "的能力地图",
-    profileLead: "页面拆成两条主线：技术能力通过代码项目呈现，管理能力通过国际交付与产品经历呈现。",
+    profileLead: "这部分帮助内推人快速理解 Nora 的两条主线：能动手搭建产品，也能在跨团队、跨地区环境中推动交付。",
     view: "查看",
   },
   en: {
@@ -31,10 +33,10 @@ const copy = {
     managementEyebrow: "Management Capability",
     managementTitle: "Management Capability · International Experience",
     managementDescription:
-      "Reframed from LinkedIn and the original HTML: Australian local experience, Australia/Malaysia/UK remote collaboration, China-Sweden automotive delivery, plus early finance experience as evidence of discipline and accuracy.",
+      "A practical view of Nora's product and delivery experience across Australian local projects, Australia/Malaysia/UK remote teamwork, and China-Sweden automotive delivery.",
     profileKicker: "Profile",
     profileTitleSuffix: "'s Capability Map",
-    profileLead: "The original HTML is split into two stronger narratives: technical capability through code projects, and management capability through international delivery experience.",
+    profileLead: "This section gives referrers a quick view of Nora's two strongest narratives: hands-on product building and international product delivery.",
     view: "View",
   },
 } satisfies Record<Language, Record<string, string>>;
@@ -94,12 +96,14 @@ function CapabilityGrid({
   description,
   items,
   language,
+  highlightedId,
 }: {
   eyebrow: string;
   title: string;
   description: string;
   items: CapabilityItem[];
   language: Language;
+  highlightedId: string | null;
 }) {
   const t = copy[language];
 
@@ -120,6 +124,7 @@ function CapabilityGrid({
             city={item.title}
             directionsUrl={item.link ?? "https://github.com/njin0009"}
             imageUrl={item.image}
+            isHighlighted={highlightedId === rawItem.id}
             key={item.id}
           />
           );
@@ -132,9 +137,11 @@ function CapabilityGrid({
 function ManagementExperience({
   items,
   language,
+  highlightedId,
 }: {
   items: CapabilityItem[];
   language: Language;
+  highlightedId: string | null;
 }) {
   const t = copy[language];
 
@@ -150,7 +157,7 @@ function ManagementExperience({
         </p>
       </div>
 
-      <TeamShowcase language={language} members={items} />
+      <TeamShowcase focusId={highlightedId} language={language} members={items} />
     </div>
   );
 }
@@ -162,6 +169,31 @@ export default function ProfileCapabilityGallery({
   management,
 }: ProfileCapabilityGalleryProps) {
   const t = copy[language];
+  const [highlightedTechnicalId, setHighlightedTechnicalId] = useState<string | null>(null);
+  const [highlightedManagementId, setHighlightedManagementId] = useState<string | null>(null);
+
+  useEffect(() => {
+    function handleEvidenceFocus(event: Event) {
+      const detail = (event as CustomEvent<{ type: "technical" | "management"; id: string }>).detail;
+      if (!detail?.id) return;
+
+      if (detail.type === "technical") {
+        setHighlightedTechnicalId(detail.id);
+        setHighlightedManagementId(null);
+      } else {
+        setHighlightedManagementId(detail.id);
+        setHighlightedTechnicalId(null);
+      }
+
+      window.setTimeout(() => {
+        setHighlightedTechnicalId(null);
+        setHighlightedManagementId(null);
+      }, 4200);
+    }
+
+    window.addEventListener("nora-evidence-focus", handleEvidenceFocus);
+    return () => window.removeEventListener("nora-evidence-focus", handleEvidenceFocus);
+  }, []);
 
   return (
     <section className="section profile-capability-section" id="profile">
@@ -177,11 +209,12 @@ export default function ProfileCapabilityGallery({
         <CapabilityGrid
           description={t.techDescription}
           eyebrow={t.techEyebrow}
+          highlightedId={highlightedTechnicalId}
           items={technical}
           language={language}
           title={t.techTitle}
         />
-        <ManagementExperience items={management} language={language} />
+        <ManagementExperience highlightedId={highlightedManagementId} items={management} language={language} />
       </div>
     </section>
   );

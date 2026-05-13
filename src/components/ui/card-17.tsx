@@ -11,6 +11,7 @@ interface LocationCardProps {
   directionsUrl: string;
   actionLabel?: string;
   onSelect?: () => void;
+  isHighlighted?: boolean;
   className?: string;
 }
 
@@ -21,6 +22,7 @@ export const LocationCard = ({
   directionsUrl,
   actionLabel = "Open",
   onSelect,
+  isHighlighted = false,
   className,
 }: LocationCardProps) => {
   const x = useMotionValue(0);
@@ -49,6 +51,7 @@ export const LocationCard = ({
     <motion.div
       className={cn(
         "relative h-80 w-full rounded-xl bg-cover bg-center shadow-lg transition-shadow duration-300 hover:shadow-2xl",
+        isHighlighted && "evidence-highlight",
         className,
       )}
       onClick={onSelect}

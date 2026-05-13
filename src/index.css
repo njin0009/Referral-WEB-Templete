@@ -542,6 +542,13 @@ p {
   box-shadow: inset 3px 0 0 #0086c9;
 }
 
+.evidence-highlight {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.75), 0 0 42px rgba(34, 197, 94, 0.42), 0 0 90px rgba(34, 197, 94, 0.22) !important;
+  animation: evidence-glow 1s ease-in-out infinite alternate, evidence-nudge 0.42s ease-in-out 0s 3;
+}
+
 .job-detail-dots {
   display: flex;
   align-items: center;
@@ -734,6 +741,28 @@ p {
   }
   to {
     transform: translateX(calc(-50% - (var(--carousel-gap) / 2)));
+  }
+}
+
+@keyframes evidence-glow {
+  from {
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.55), 0 0 34px rgba(34, 197, 94, 0.32), 0 0 72px rgba(34, 197, 94, 0.18);
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.95), 0 0 58px rgba(34, 197, 94, 0.55), 0 0 110px rgba(34, 197, 94, 0.28);
+  }
+}
+
+@keyframes evidence-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
   }
 }
 
